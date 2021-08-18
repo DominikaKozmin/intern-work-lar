@@ -30,7 +30,7 @@
                 <a href="#" class="nav-link active m-2 menu-item">Oferty pracy</a>
               </li>
               <li class="nav-item">
-                  <a href="#" class="nav-link active m-2 menu-item">Zakwaterowanie</a>
+                  <a href="/zakwaterowanie" class="nav-link active m-2 menu-item">Zakwaterowanie</a>
               </li>
         </div>
 

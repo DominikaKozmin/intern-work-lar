@@ -10,6 +10,7 @@ Route::get('/', function () {
 Route::get('/jobs', 'App\Http\Controllers\OffersController@index');
 Route::get('/pracownik', 'App\Http\Controllers\PracownikController@index');
 Route::get('/pracodawca', 'App\Http\Controllers\PracodawcaController@index');
+Route::get('/zakwaterowanie', 'App\Http\Controllers\AccommodationController@index');
 
 Auth::routes();
 
