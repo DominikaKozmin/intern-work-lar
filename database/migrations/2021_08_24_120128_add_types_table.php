@@ -16,7 +16,7 @@ class AddTypesTable extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigint('offer_id');
+            $table->bigInteger('offer_id');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

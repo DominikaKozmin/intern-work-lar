@@ -15,8 +15,8 @@ class AddFavouritesTable extends Migration
     {
         Schema::create('favourites', function (Blueprint $table) {
             $table->id();
-            $table->bigint('user_id');
-            $table->bigint('offer_id');
+            $table->bigInteger('user_id');
+            $table->bigInteger('offer_id');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

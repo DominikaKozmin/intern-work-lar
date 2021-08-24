@@ -15,7 +15,7 @@ class AddRewardTable extends Migration
     {
         Schema::create('reward', function (Blueprint $table) {
             $table->id();
-            $table->int('money');
+            $table->integer('money');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
