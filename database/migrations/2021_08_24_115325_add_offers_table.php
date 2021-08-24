@@ -22,9 +22,9 @@ class AddOffersTable extends Migration
             $table->integer('offer_duration');
             $table->integer('job_duration')->nullable();
             $table->date('job_start')->nullable();
-            $table->varchar('position');
+            $table->char('position');
             $table->string('city');
-            $table->varchar('image')->nullable();
+            $table->char('image')->nullable();
             $table->integer('salary')->nullable();
             $table->integer('vacancies')->nullable();
             $table->longtext('description');
