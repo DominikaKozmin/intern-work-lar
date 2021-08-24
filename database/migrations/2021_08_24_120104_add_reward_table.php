@@ -13,7 +13,7 @@ class AddRewardTable extends Migration
      */
     public function up()
     {
-        Schema::create('reward', function (Blueprint $table) {
+        Schema::create('rewards', function (Blueprint $table) {
             $table->id();
             $table->integer('money');
             $table->timestamp('created_at')->nullable();
@@ -28,6 +28,6 @@ class AddRewardTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reward');
+        Schema::dropIfExists('rewards');
     }
 }
