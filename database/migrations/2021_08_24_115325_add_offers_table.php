@@ -15,10 +15,10 @@ class AddOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('company_id');
-            $table->string('category_id');
-            $table->string('location_id');
-            $table->string('type_id');
+            $table->int('company_id');
+            $table->int('category_id');
+            $table->int('location_id');
+            $table->int('type_id');
             $table->int('offer_duration');
             $table->int('job_duration')->nullable();
             $table->date('job_start')->nullable();
