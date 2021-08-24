@@ -330,7 +330,6 @@ h3.text-present {
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
-    background-attachment: fixed;
   }
 
   .sl-accommodation {
@@ -349,7 +348,13 @@ h3.text-present {
     100%{background-position: 100vw 0;}
   }
 
-  .bgimage, .sl-accommodation h1 {
+  .bgimage h1 {
+    color:white;
+    text-align: center;
+    padding: 60px;
+    font-size: 48px;
+  }
+  .sl-accommodation h1 {
     color:white;
     text-align: center;
     padding: 60px;
@@ -389,7 +394,7 @@ h3.text-present {
   .dark {
     background: rgba(0, 0, 0, 0.4);
     height: 100%;
-    
+    width: 100%;
   }
 
   .button {
