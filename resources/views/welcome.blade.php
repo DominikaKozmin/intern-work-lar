@@ -37,7 +37,7 @@
 
     <h3 class = "pTitle text-center">Centrum aktualności</h3>
     <div class="text">Tutaj możesz śledzić najnowsze newsy ze świata pracy</div>
-
+    @include('components.latest_articles_horizontal')
 </div>
 
 

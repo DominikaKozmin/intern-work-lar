@@ -43,8 +43,7 @@
         </div>
   </div>
   </div>
-
-  <br/><br/><br/>
+  @include('components.latest_articles_horizontal')
 
 
 @endsection
