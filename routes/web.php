@@ -8,12 +8,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/jobs', 'App\Http\Controllers\OffersController@index');
-Route::get('/pracownik', 'App\Http\Controllers\PracownikController@index');
-Route::get('/pracodawca', 'App\Http\Controllers\PracodawcaController@index');
+Route::get('/oferty', 'App\Http\Controllers\OffersController@index');
+Route::get('/pracownik', 'App\Http\Controllers\EmployeeController@index');
+Route::get('/pracodawca', 'App\Http\Controllers\EmployerController@index');
 Route::get('/zakwaterowanie', 'App\Http\Controllers\AccommodationController@index');
 
-Route::resource('/artykuly', ArticlesController::class);
+Route::resource('/artykuły', ArticlesController::class);
 
 Auth::routes();
 
