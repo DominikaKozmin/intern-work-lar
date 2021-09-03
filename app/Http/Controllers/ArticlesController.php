@@ -14,7 +14,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('artykuly.index')
+        return view('articles.index')
             ->with('articles', Article::orderBy('created_at', 'DESC')->get());
     }
 
@@ -25,7 +25,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('artykuly.create');
+        return view('articles.create');
     }
 
     /**
@@ -65,13 +65,13 @@ class ArticlesController extends Controller
     public function show($slug)
     {
         $response = Article::where('slug', $slug)->first();
-        if(empty($response)){
+        /*if(empty($response)){
             abort(404);
-        }
+        }*/
 
-        return view('artykuly.show')
+        return view('articles.show')
             ->with('article', $response)
-            ->with('artykul', Article::orderBy('created_at', 'DESC')->get());
+            ->with('articles', Article::orderBy('created_at', 'DESC')->get());
     }
 
     /**

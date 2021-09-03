@@ -13,7 +13,7 @@ Route::get('/pracownik', 'App\Http\Controllers\EmployeeController@index');
 Route::get('/pracodawca', 'App\Http\Controllers\EmployerController@index');
 Route::get('/zakwaterowanie', 'App\Http\Controllers\AccommodationController@index');
 
-Route::resource('/artykuły', ArticlesController::class);
+Route::resource('/artykuly', ArticlesController::class);
 
 Auth::routes();
 

@@ -37,7 +37,7 @@
             </div>
             <div class="ml-4">
                 <div class="bg-white flex">
-                    <!-- @include('components.najnowsze_artykuly_pionowo') !-->
+                     @include('components.latest_articles_vertical') !-->
                 </div>
             </div>
         </div>
