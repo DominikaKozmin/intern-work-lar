@@ -14,7 +14,7 @@ $articles = Illuminate\Support\Facades\DB::table('articles')
                         <img width="100%" height="225" class="" src="{{ asset('storage/articles_images/' . $article->image) }}">
                         <div class="card-body">
                             <p class="fs-5 fw-bolder"><a class="text-dark" href="artykuly/{{ $article->slug }}">{{ $article->title }}</a></p>
-                            <p class="card-text fw-light border-bottom pb-3 lh-lg fs-6">{{ Str::of($article->content)->words(15, ' ...') }}</p>
+                            <p class="card-text fw-light border-bottom pb-3 lh-lg fs-6">{{ Str::of($article->content)->words(15, '...') }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div></div>
                                 <div class="text-primary fw-bold"><a href="artykuly/{{ $article->slug }}">Czytaj dalej <img src="{{ asset('storage/icons/right-arrow.png') }}" alt=""></a></div>
