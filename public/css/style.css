@@ -5,7 +5,7 @@ body {
     font-weight: 400;
     line-height: 28px;
     color: #212529;
-    background-color: #fff;
+    background-color: #f6f7f9;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     
@@ -211,6 +211,15 @@ p.slider {
 
 }
 
+h1.standard {
+  margin-top: 10%;
+  margin-bottom:10%;
+  line-height: 1.5;
+  font-size: 36px;
+  font-weight: 500;
+
+}
+
 
 h3 {
   color: #333;
@@ -310,6 +319,19 @@ h3.text-present {
     background: grey;
     box-shadow: 0 3px 7px 0 rgb(0 0 0 / 15%);
 }
+  .gray-box input {
+    color: #fff;
+    font-size: 13px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  ::placeholder {
+    color: white;
+    opacity: .5;
+  }
 
 .btn-cv {
   font-size: 14px;
@@ -447,6 +469,29 @@ h3.text-present {
   border-radius: 50%;
 
 }
+
+.widget-offer {
+  background: #fff;
+  padding: 35px;
+  border-radius: 5px;
+  content: "";
+  display: table;
+  clear: both;
+  box-sizing: border-box;
+}
+
+h3.widget-title {
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0 0 32px;
+  padding-bottom: 10px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+
 
 
 
