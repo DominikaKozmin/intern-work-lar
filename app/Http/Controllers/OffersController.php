@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class OffersController extends Controller
 {
     public function index() {
-        echo "Witaj świecie!";
+        return view('offers.offers');
     }
 }

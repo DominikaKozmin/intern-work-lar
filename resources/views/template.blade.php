@@ -27,7 +27,7 @@
                   <a href="/pracodawca" class="nav-link active m-2 menu-item">Strefa pracodawcy</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link active m-2 menu-item">Oferty pracy</a>
+                <a href="oferty" class="nav-link active m-2 menu-item">Oferty pracy</a>
               </li>
               <li class="nav-item">
                   <a href="/zakwaterowanie" class="nav-link active m-2 menu-item">Zakwaterowanie</a>
