@@ -320,12 +320,12 @@ h3.text-present {
     border: none;
     box-shadow: none;
     background-color: transparent;
-  }
+}
 
-  ::placeholder {
+ ::placeholder {
     color: white;
     opacity: .5;
-  }
+}
 
 .btn-cv {
     font-size: 14px;
@@ -412,12 +412,11 @@ h1.header-acc {
 
 h1.standard {
     margin-top: 10%;
-    margin-bottom:10%;
+    margin-bottom: 10%;
     line-height: 1.5;
     font-size: 36px;
     font-weight: 500;
-  
-  }
+}
 
 .dark {
     background: rgba(0, 0, 0, 0.4);
@@ -484,9 +483,9 @@ h1.standard {
     display: table;
     clear: both;
     box-sizing: border-box;
-  }
-  
-  h3.widget-title {
+}
+
+h3.widget-title {
     color: #333;
     font-size: 13px;
     font-weight: 600;
@@ -495,7 +494,7 @@ h1.standard {
     padding-bottom: 10px;
     position: relative;
     text-transform: uppercase;
-  }
+}
 
 .uppercase {
     text-transform: uppercase;
@@ -535,6 +534,10 @@ h1.standard {
 
 .w-2\/5 {
     width: 40%;
+}
+
+.w-full {
+    width: 100%;
 }
 
 .w-auto {

@@ -27,7 +27,7 @@
                                     alt="">{{ $article->created_at->ago() }}</div>
                             <div class="pb-3"><a class="text-dark fs-2"
                                     href="artykuly/{{ $article->slug }}">{{ $article->title }}</a></div>
-                            <div class="pb-5 text-secondary">{{ Str::of($article->content)->words(55, ' [...]') }}</div>
+                            <div class="pb-5 text-secondary">{{ Str::of(strip_tags($article->content))->words(55, ' [...]') }}</div>
                             <div class="row">
                                 <div class="col uppercase">Przez: <b>{{ $article->user->name }}</b></div>
                                 <div class="col uppercase text-end">Udostępnij</div>
