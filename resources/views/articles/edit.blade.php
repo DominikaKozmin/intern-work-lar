@@ -5,10 +5,7 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
-      selector: '#content',
-      height: 500,
-      plugins: 'lists',
-      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist | outdent indent'
+      selector: '#content'
     });
   </script>
 
@@ -31,11 +28,12 @@
     @endif
     Tytuł
     <div>
-        <form action="/artykuly" method="POST" enctype="multipart/form-data">
+        <form action="/artykuly/{{ $article->slug }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input class="w-full" type="text" name="title" placeholder="Tytuł..."><br><br>
+            @method('PUT')
+            <input class="w-full" type="text" name="title" value="{{ $article->title }}"><br><br>
             Zawartość<br>
-            <textarea id="content" name="content"></textarea><br>
+            <textarea id="content" name="content">{{ $article->content }}</textarea><br>
             Zdjęcie
             <div class="input-group">
                 <input type="file"  name="image"  class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">

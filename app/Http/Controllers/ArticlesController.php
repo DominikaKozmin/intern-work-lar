@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Purifier;
 
 class ArticlesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +52,7 @@ class ArticlesController extends Controller
         
         Article::create([
             'title' => $request->input('title'),
-            'content' => $request->input('content'),
+            'content' => Purifier::clean($request->input('content')),
             'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
             'image' => $newImageName,
             'user_id' => auth()->user()->id
@@ -80,9 +85,10 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        return view('articles.edit')
+            ->with('article', Article::where('slug', $slug)->first());
     }
 
     /**
@@ -92,9 +98,18 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        Article::where('slug', $slug)
+            ->update([
+                'title' => $request->input('title'),
+                'content' => Purifier::clean($request->input('content')),
+                'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
+                'user_id' => auth()->user()->id
+            ]);
+
+            return redirect('/artykuly')
+                ->with('message', 'Zaktualizowano artykuł');
     }
 
     /**
@@ -103,8 +118,12 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $article = Article::where('slug', $slug);
+        $article->delete();
+
+        return redirect('/artykuly')
+                ->with('message', 'Usunięto artykuł');
     }
 }
