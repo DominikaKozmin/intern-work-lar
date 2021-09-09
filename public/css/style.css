@@ -496,6 +496,27 @@ h3.widget-title {
     text-transform: uppercase;
 }
 
+
+/* */
+
+.bg-white {
+    background-color: #fff;
+}
+
+.rounded-t {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.rounded-b {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.float-left {
+    float: left;
+}
+
 .uppercase {
     text-transform: uppercase;
 }
@@ -544,38 +565,42 @@ h3.widget-title {
     width: auto;
 }
 
+
+/* */
+
 .adverts-options {
     margin-top: 50px;
     line-height: 28px;
-    height:150px;
+    height: 150px;
     overflow: hidden;
     clear: both;
     border: 1px solid #e5e5e5;
     border-bottom: 2px solid #e5e5e5;
     background-color: #fbfbfb;
-    position:relative;
+    position: relative;
 }
 
-.advert, .input-group {
+.advert,
+.input-group {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:5px;
+    margin-top: 5px;
     padding: 10px;
 }
 
 .btn-outline-primary {
-border: groove 2px gray;
-height: 28px;
-padding: 0 10px;
-text-transform: uppercase;
-background: whitesmoke;
-float: right;
-margin-right: 20px;
-border: 1px solid #ccc;
-position: relative;
-cursor: pointer;
-font: 300 13px/30px Helvetica, Arial, sans-serif;
-background-image: -moz-linear-gradient(50% 0%, #F5F5F5, #F1F1F1);
-color: #666;
+    border: groove 2px gray;
+    height: 28px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    background: whitesmoke;
+    float: right;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    position: relative;
+    cursor: pointer;
+    font: 300 13px/30px Helvetica, Arial, sans-serif;
+    background-image: -moz-linear-gradient(50% 0%, #F5F5F5, #F1F1F1);
+    color: #666;
 }

@@ -70,9 +70,9 @@ class ArticlesController extends Controller
     public function show($slug)
     {
         $response = Article::where('slug', $slug)->first();
-        /*if(empty($response)){
+        if(empty($response)){
             abort(404);
-        }*/
+        }
 
         return view('articles.show')
             ->with('article', $response)

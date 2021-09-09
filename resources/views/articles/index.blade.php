@@ -8,7 +8,7 @@
                 <div class="pb-3"><a href="..">Start </a><span class="font-black">></span> Artykuły</div>
                 <div class="fs-1">Artykuły</div>
                 @if (session()->has('message'))
-                    <p class='alert alert-info'>
+                    <p class='alert alert-info mt-4'>
                         {{ session()->get('message') }}
                     </p>
                 @endif
@@ -17,9 +17,9 @@
         <div class="row">
             <div class="col-8">
                 @foreach ($articles as $article)
-                    <div class="pb-5">
-                        <img class="rounded w-100" src="{{ asset('storage/articles_images/' . $article->image) }}">
-                        <div class="p-4 h-auto">
+                    <div class="mb-5 bg-white">
+                        <img class="rounded-t w-100" src="{{ asset('storage/articles_images/' . $article->image) }}">
+                        <div class="p-4 h-auto rounded-b">
                             <div class="d-inline-block text-secondary pb-3 w-full">
                                 <img class="d-inline-block pr-1" src="{{ asset('storage/icons/folder.png') }}" alt="">
                                 <a class="text-secondary pr-3" href="#"> Artykuły</a>
@@ -37,7 +37,7 @@
                             <div class="pb-3">
                                 <a class="text-dark fs-2" href="/artykuly/{{ $article->slug }}">{{ $article->title }}</a>
                             </div>
-                            <div class="pb-5 text-secondary">
+                            <div class="pb-3 mb-3 text-secondary border-bottom">
                                 {{ Str::of(strip_tags($article->content))->words(55, ' [...]') }}</div>
                             <div class="row">
                                 <div class="col uppercase">Przez: <b>{{ $article->user->name }}</b></div>
