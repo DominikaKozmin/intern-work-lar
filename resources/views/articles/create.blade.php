@@ -17,17 +17,12 @@
 @section('content')
 
 <div class="container mt-5">
-    <main class="sm:container sm:mx-auto sm:mt-10">
-        @if ($errors->any())
-        <div class="w-4/5 m-auto">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li class="w-1/5 mb-4 text-gray-50 bg-red-700 rounded-2xl py-4">
-                        {{ $error }}
-                    </li>
-                @endforeach
-            </ul>
-        </div>
+    @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endforeach
     @endif
     Tytuł
     <div>
@@ -39,10 +34,9 @@
             Zdjęcie
             <div class="input-group">
                 <input type="file"  name="image"  class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04">Wyślij</button>
-              </div>
+                <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Wyślij</button>
+            </div>
         </form>
     </div>
-    </main>
 </div>
 @endsection

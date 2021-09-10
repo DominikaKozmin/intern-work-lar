@@ -43,6 +43,12 @@
         </div>
   </div>
   </div>
+
+  <div class="backgroundNewspapers">
+      <div class="d-flex justify-content-center align-items-center h-full">
+        Centrum Aktywności
+      </div>
+  </div>
   @include('components.latest_articles_horizontal')
 
 

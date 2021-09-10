@@ -100,14 +100,31 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        Article::where('slug', $slug)
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+        if($request->image==NULL){
+            Article::where('slug', $slug)
             ->update([
                 'title' => $request->input('title'),
                 'content' => Purifier::clean($request->input('content')),
                 'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
                 'user_id' => auth()->user()->id
             ]);
-
+        }
+        else{
+            $newImageName = uniqid().'-'.$request->title.'.'.$request->image->extension();
+            $request->image->move(public_path('storage\articles_images'),$newImageName);
+            Article::where('slug', $slug)
+            ->update([
+                'title' => $request->input('title'),
+                'content' => Purifier::clean($request->input('content')),
+                'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
+                'image' => $newImageName,
+                'user_id' => auth()->user()->id
+            ]);
+        }
             return redirect('/artykuly')
                 ->with('message', 'Zaktualizowano artykuł');
     }

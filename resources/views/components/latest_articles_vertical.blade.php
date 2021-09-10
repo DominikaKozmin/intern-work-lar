@@ -1,5 +1,5 @@
-<div class="p-4 bg-white mr-5">
-    <div class="uppercase pb-3"><div class="w-1/2 border-bottom">Najnowsze artykuły</div></div>
+<div class="p-4 bg-white mr-12">
+    <div class="uppercase pb-3 d-flex"><div class="border-bottom">Najnowsze artykuły</div></div>
     @for ($i = 0; $i<count($articles) ; $i++)
         <div class="py-4 mb-3">
             <a class="float-left pr-3" href="{{ $articles[$i]->slug }}"><img class="float-left" height="85px" width="85px"
@@ -12,6 +12,6 @@
         </div>
     @endfor
 
-    <div class="uppercase pb-3 text-sm font-semibold"><div class="w-1/2 border-bottom">Najnowsze komentarze</div></div>
+    <div class="uppercase pb-3 text-sm font-semibold d-flex"><div class="border-bottom">Najnowsze komentarze</div></div>
     <div class="w-12 border-b mb-8"></div>
 </div>

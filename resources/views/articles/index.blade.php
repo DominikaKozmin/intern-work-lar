@@ -21,9 +21,9 @@
                         <img class="rounded-t w-100" src="{{ asset('storage/articles_images/' . $article->image) }}">
                         <div class="p-4 h-auto rounded-b">
                             <div class="d-inline-block text-secondary pb-3 w-full">
-                                <img class="d-inline-block pr-1" src="{{ asset('storage/icons/folder.png') }}" alt="">
+                                <img class="d-inline-block pr-1" src="{{ asset('img/icons/folder.png') }}" alt="">
                                 <a class="text-secondary pr-3" href="#"> Artykuły</a>
-                                <img class="d-inline-block pr-1" src="{{ asset('storage/icons/calendar.png') }}" alt="">
+                                <img class="d-inline-block pr-1" src="{{ asset('img/icons/calendar.png') }}" alt="">
                                 {{ $article->created_at->ago() }}
                                 @if (Auth::check())
                                     <form class="d-inline-block float-end" action="/artykuly/{{ $article->slug }}" method="POST">
