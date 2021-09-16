@@ -14,6 +14,7 @@ class AddOffersTable extends Migration
     public function up()
     {
         Schema::create('offers', function (Blueprint $table) {
+            /*
             $table->id();
             $table->integer('company_id');
             $table->integer('category_id');
@@ -30,6 +31,22 @@ class AddOffersTable extends Migration
             $table->longtext('description');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
+            */
+
+            $table->id();
+            $table->string('slug');
+            $table->string('title');
+            $table->unsignedBigInteger('user_id');
+            $table->string('salary');
+            //Need contract types table
+            $table->unsignedBigInteger('industry'); //Category
+            //Need languages table
+            $table->date('deadline');
+            $table->longText('content');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('industry')->references('id')->on('industries');
         });
     }
 
