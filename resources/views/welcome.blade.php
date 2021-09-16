@@ -6,6 +6,26 @@
         <strong><h3 class = "main-title">Znajdź pracę</h3></strong>
     </div>
     <div>
+        <div class="d-flex" id="app">
+            <drop-test
+                :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}, { id: 3, name: 'Cat'}]"
+                options_1="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}, { id: 3, name: 'Cat'}]"
+                options_2="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}, { id: 3, name: 'Cat'}]"
+                options_3="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}, { id: 3, name: 'Cat'}]"
+                v-on:selected="validateSelection"
+                v-on:filter="getDropdownValues"
+                name="zipcode"
+                :maxItem="10"
+                description_1="Słowo kluczowe"
+                description_2="Słowo kluczowe"
+                description_3="SłowoA kluczowe"
+                placeholder_1="Posada, zawód..."
+                placeholder_2="Wszystkie kategorie"
+                placeholder_3="Wszystkie kategorie">
+            </drop-test>
+        </div>
+    </div>
+    <div>
     <div class="row justify-content-around">
         <div class="gray-box col-md-4 ">
             <div>
