@@ -17,6 +17,7 @@ class Offer extends Model
      * @var array
      */
     protected $fillable = [
+        /*
         "category_id",
         "location_id",
         "type_id",
@@ -32,6 +33,14 @@ class Offer extends Model
         "description",
         "offer_duration",
         "image",
+        */
+        "slug",
+        "title",
+        "user_id",
+        "salary",
+        "industry",
+        "deadline",
+        "content",
     ];
     public function sluggable(): array
     {

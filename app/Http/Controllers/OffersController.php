@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Offer;
+use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Purifier;
 
@@ -38,11 +38,12 @@ class OffersController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate([
-            'title' => 'required',
+            'title' => ['required', 'max:255'],
             'content' => 'required',
             'industry' => 'required',
-            'deadline' => 'required',
+            'deadline' => 'required|date',
         ]);
 
         Offer::create([

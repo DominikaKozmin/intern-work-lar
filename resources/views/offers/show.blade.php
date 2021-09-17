@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.template')
 
 @section('content')
 <div class="p-4 m-auto max-w-screen-lg h-full">

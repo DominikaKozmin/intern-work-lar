@@ -1,9 +1,10 @@
-@extends('template')
+@extends('layouts.template')
 
 @section('content')
     <div class="container"> 
         <h1 class = "standard">Oferty pracy</h1>
-        <aside class = "widget-offer">
+        
+        <div class = "widget-offer">
             <h3 class="widget-title">
                 <span>Branża</span>
             </h3>
@@ -32,7 +33,12 @@
                 <label class="form-check-label" for="gridRadios1">IT - Administracja
                 </label>
             </div>
-        </aside>
+        </div>
+        
+        <div class="">
+            @foreach ($offers as $offer)
+                {{ $offer }}
+            @endforeach
         </div>
     </div>
 @endsection
