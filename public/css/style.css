@@ -418,6 +418,12 @@ h1.standard {
     font-weight: 500;
 }
 
+.standard {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    line-height: 1.5;
+}
+
 .dark {
     background: rgba(0, 0, 0, 0.4);
     height: 100%;
