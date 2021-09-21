@@ -10,37 +10,37 @@
         <div class="standard"><a href="/">Start</a> > <a href="/oferty">Oferty pracy</a> > {{ $offer->title }}
             <h1 class="">{{ $offer->title }}</h1>
         </div>   
-    
+
         <div class="row">
             <div class="col-8 bg-white">
                 <div class="row text-center">
                     <div class="col border-bottom border-end py-4 px-5">Lokalizacja:</div>
-                    <div class="col border-bottom py-4 px-5">Wynagrodzenie:</div>
+                    <div class="col border-bottom py-4 px-5">Wynagrodzenie:{{ $offer->salary }}</div>
                 </div>
                 <div class="row text-center">
                     <div class="col border-bottom border-end py-4 px-5">Typ pracy:</div>
-                    <div class="col border-bottom py-4 px-5">Opublikowano:</div>
+                    <div class="col border-bottom py-4 px-5">Opublikowano:{{ $offer->created_at }}</div>
                 </div>
                 <div class="row text-center">
-                    <div class="col border-bottom border-end py-4 px-5">Kategoria:</div>
-                    <div class="col border-bottom py-4 px-5">Termin ostateczny:</div>
+                    <div class="col border-bottom border-end py-4 px-5">Kategoria:{{ $offer->industry }}</div>
+                    <div class="col border-bottom py-4 px-5">Termin ostateczny:{{ $offer->deadline }}</div>
                 </div>
                 <div class="row text-center">
                     <div class="col border-bottom border-end py-4 px-5">Języki:</div>
                     <div class="col py-4 px-5"></div>
                 </div>
-                <div class="px-5">
+                <div class="px-5 border-bottom">
                     {!! $offer->content !!}
                     
-                    <div class="border-bottom">
-                        <div id="mapid" style="width: 600px; height: 400px;"></div>
+                    <div class="mb-4">
+                        <div id="mapid" style="width: 600px; height: 300px;"></div>
                         <script>
 
                             var mymap = L.map('mapid').setView([52.40688, 16.93752], 15);
 
                             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                                 maxZoom: 18,
-                                attribution: 'SIEEEMA Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
                                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                                 id: 'mapbox/streets-v11',
                                 tileSize: 512,
@@ -49,14 +49,27 @@
 
                         </script>
                     </div>
-                    <div>Udostępnij:</div>
+                </div>
+                <div class="px-5 py-4 uppercase border-bottom fw-bold">Dodaj do ulubionych</div>
+                <div class="px-5 py-4 uppercase fw-bold">Udostępnij:</div>
+            </div>
+        <div class="col-4">
+            <div class="bg-white p-5 ">
+                <div class="text-center border-bottom pb-5 mb-5">
+                    <img class="d-inline-block pb-4" src="{{ asset('img/images/user.png') }}" alt=""><br>
+                    <p class="fs-1">{{ $offer->user->name }}</p> 
+                </div>
+                <div>
+                    <div class="d-flex pb-4"><p class="uppercase fw-bold border-bottom">CONTACT FORM</p></div>
+                    <input class="form-control mb-2" type="text" placeholder="Twoje Imię">
+                    <input class="form-control mb-2" type="text" placeholder="Twój email">
+                    <input class="form-control mb-2" type="text" placeholder="Przedmiot">
+                    <textarea class="form-control" name="" id="" cols="30" rows="5" placeholder="Wiadomość"></textarea><br>
+                    <input class="btn btn-success" type="button" value="Wyślij teraz">
                 </div>
             </div>
-            <div class="col-4">
-
-            </div>
         </div>
-
+        </div>
     </div>
-    {{ $offer }}
+    </div>
 @endsection

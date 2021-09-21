@@ -323,7 +323,7 @@ h3.text-present {
 }
 
  ::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
     opacity: .5;
 }
 
