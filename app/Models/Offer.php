@@ -45,10 +45,21 @@ class Offer extends Model
 
     
 
+    public function industryTable(){
+        return $this->belongsTo(Industry::class, 'industry', 'id');
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }
-    
+
+    public function languages(){
+        return $this->belongsToMany(Language::class);
+    }
+
+    public function types_of_work(){
+        return $this->belongsToMany(Type_of_work::class);
+    }
 
     public function sluggable(): array
     {

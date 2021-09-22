@@ -18,15 +18,19 @@
                     <div class="col border-bottom py-4 px-5">Wynagrodzenie:{{ $offer->salary }}</div>
                 </div>
                 <div class="row text-center">
-                    <div class="col border-bottom border-end py-4 px-5">Typ pracy:</div>
+                    <div class="col border-bottom border-end py-4 px-5">Typ pracy: @foreach ($offer->types_of_work as $type_of_work)
+                        {{ $type_of_work->name }}
+                    @endforeach </div>
                     <div class="col border-bottom py-4 px-5">Opublikowano:{{ $offer->created_at }}</div>
                 </div>
                 <div class="row text-center">
-                    <div class="col border-bottom border-end py-4 px-5">Kategoria:{{ $offer->industry }}</div>
+                    <div class="col border-bottom border-end py-4 px-5">Kategoria: {{ $offer->industryTable->name }}</div>
                     <div class="col border-bottom py-4 px-5">Termin ostateczny:{{ $offer->deadline }}</div>
                 </div>
                 <div class="row text-center">
-                    <div class="col border-bottom border-end py-4 px-5">Języki:</div>
+                    <div class="col border-bottom border-end py-4 px-5">Języki: @foreach ( $offer->languages as $language)
+                        {{ $language->name }}
+                    @endforeach </div>
                     <div class="col py-4 px-5"></div>
                 </div>
                 <div class="px-5 border-bottom">

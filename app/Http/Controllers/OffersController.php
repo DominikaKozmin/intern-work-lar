@@ -72,7 +72,7 @@ class OffersController extends Controller
         if(empty($response)){
             abort(404);
         }
-        
+        //dd($response->languages);
         return view('offers.show')
             ->with('offer', $response);
     }
