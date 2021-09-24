@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Industry;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\DB;
 use Purifier;
 
 class OffersController extends Controller
@@ -16,8 +18,16 @@ class OffersController extends Controller
      */
     public function index()
     {
+        $response = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
+        //$response = Offer::select('select * from offers', [1]);
+        //$response = Offer::table('offers')->get();
         return view("offers.index")
-            ->with('offers', Offer::orderBy('created_at', 'DESC')->get());
+            ->with('offers', Offer::orderBy('created_at', 'DESC')->get())
+            ->with('offersCount', $response);
+    }
+
+    public function zxc(){
+        return view('employee');
     }
 
     /**
