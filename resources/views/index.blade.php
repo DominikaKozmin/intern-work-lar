@@ -5,7 +5,9 @@
     <div>
         <strong><h3 class = "main-title">Znajdź pracę</h3></strong>
     </div>
+    
     <div>
+        <!--
         <div class="d-flex" id="app">
             <drop-test
                 :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}, { id: 3, name: 'Cat'}]"
@@ -24,9 +26,10 @@
                 placeholder_3="Wszystkie kategorie">
             </drop-test>
         </div>
+        !-->
     </div>
     <div>
-    <div class="row justify-content-around">
+    <div class="row justify-content-around mb-5 pb-5">
         <div class="gray-box col-md-4 ">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -55,10 +58,25 @@
             </div>
         </div>
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <div class="row justify-content-around text-center">
+    
+    <div class="mb-5 pb-5">
+        <div id="app">
+            @php
+                // Without loop below user data won't be passed to vue component
+                // FIXME: I'm preaty sure that there is a better way to fix this problem.
+                foreach ($offers as $offer) {
+                    $_ = $offer->user->name;
+                }
+                foreach ($highlightedOffers as $highlightedOffer) {
+                    $_ = $highlightedOffer->user->name;
+                }
+            @endphp
+            <vue-test :latestOffers="{{ $offers }}" :highlightedOffers="{{ $highlightedOffers }}" ></vue-test>
+        </div>
+        {{ $highlightedOffers }}
+    </div>
+
+    <div class="row justify-content-around text-center rounded-pill">
         <div class="col-4">
           <em>Jestem</em>
           <h3 class = "text-present">Pracodawcą</h3>

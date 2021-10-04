@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('drop-test', require('./components/DropDownTest.vue').default);
 Vue.component('drop-menu', require('./components/DropDownMenu.vue').default);
+Vue.component('vue-test', require('./components/VueBladeHandlingTest.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**

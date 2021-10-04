@@ -131,9 +131,21 @@
                 </div>
                 <!-- Middle panel -->
                 <div class="col-6">
-                    <div class="bg-white">
+                    <div>
+                        <div class="bg-white w-full p-4 mb-4">
+                            Placeholder
+                        </div>
+                    </div>
+                    <div>
                         @foreach ($offers as $offer)
-                            <a class="fs-5" href="/oferty/{{ $offer->slug }}">{{ $offer->title }}</a> 
+                            @include('components.job_offer', [
+                                'Slug' => $offer->slug,
+                                'Title' => $offer->title,
+                                'Location' => 'Lokacja placeholder',
+                                'Username' => $offer->user->name,
+                                'Salary' => $offer->salary,
+                                'Created_at' => $offer->created_at
+                            ])
                         @endforeach
                     </div>
                 </div>

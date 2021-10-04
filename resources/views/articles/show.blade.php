@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <!-- {{ Date::setLocale('pl') }} !-->
+    <!-- {{ Date::setLocale('pl') }} -->
     <div class="container">
         <div class="mt-5 mb-5">
             <div>
