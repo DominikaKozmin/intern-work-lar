@@ -18,8 +18,8 @@
                     <div class="col border-bottom py-4 px-5">Wynagrodzenie:{{ $offer->salary }}</div>
                 </div>
                 <div class="row text-center">
-                    <div class="col border-bottom border-end py-4 px-5">Typ pracy: @foreach ($offer->types_of_work as $type_of_work)
-                        {{ $type_of_work->name }}
+                    <div class="col border-bottom border-end py-4 px-5">Typ pracy: @foreach ($offer->types as $type)
+                        {{ $type->name }}
                     @endforeach </div>
                     <div class="col border-bottom py-4 px-5">Opublikowano:{{ $offer->created_at }}</div>
                 </div>

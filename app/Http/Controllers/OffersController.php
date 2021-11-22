@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Industry;
 use App\Models\Offer;
+use App\Models\User;
+use App\Models\Ability;
+use App\Models\Salary;
+use App\Models\SalaryTier;
+use App\Models\Country;
+use App\Models\Type;
+use App\Models\Level;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +25,38 @@ class OffersController extends Controller
      */
     public function index()
     {
-        $response = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
-        //$response = Offer::select('select * from offers', [1]);
-        //$response = Offer::table('offers')->get();
+        $index = [];
+        $industryCount = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
+        $industryCount['tablename'] = "Branża";
+        $ablilitesCount = Ability::orderBy('id', 'ASC')->get()->toarray();
+        $ablilitesCount['tablename'] = "Umiejętności";
+        $levelsCount = Level::orderBy('id', 'ASC')->get()->toarray();
+        $levelsCount['tablename'] = "Poziomy";
+        $salaryCount = Salary::orderBy('id', 'ASC')->get()->toarray();
+        $salaryCount['tablename'] = "Kwoty Wynagrodzenia";
+        $countriesCount = Country::orderBy('id', 'ASC')->get()->toarray();
+        $countriesCount['tablename'] = "Lokacja";
+        $typesCount = Type::orderBy('id', 'ASC')->get()->toarray();
+        $typesCount['tablename'] = "Typy";
+        array_push($index, $industryCount, $ablilitesCount, $levelsCount, $salaryCount, $countriesCount, $typesCount);
+        //$index = json_encode($index);
+        //$index="zxcv";
+        //dd(gettype($index));
+        $offersCountlist = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
+        //$ablilitesCountList = DB::select('select abilities.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
         return view("offers.index")
             ->with('offers', Offer::orderBy('created_at', 'DESC')->get())
-            ->with('offersCount', $response);
+            ->with('offersCountlist', $offersCountlist)
+            ->with('ablilitesCountList', Ability::orderBy('id', 'ASC')->get())
+            ->with('salaryTiers', SalaryTier::orderBy('id', 'ASC')->get())
+            ->with('CountriesCountList', Country::orderBy('id', 'ASC')->get())
+            ->with('typesCount', Type::orderBy('id', 'ASC')->get())
+            ->with('countriesCount', Country::orderBy('id', 'ASC')->get())
+            ->with('levelsCount', Level::orderBy('id', 'ASC')->get())
+            ->with('employers', User::whereNotNull('company_name')->orderBy('created_at', 'DESC')->limit(5)->get())
+            ->with('employersCount', User::whereNotNull('company_name')->count())
+            ->with('countOffer', Offer::whereNotNull('id')->count())
+            ->with('leftBarData', $index);
     }
 
     public function zxc(){

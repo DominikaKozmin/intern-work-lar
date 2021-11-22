@@ -60,6 +60,9 @@ class Offer extends Model
     public function types_of_work(){
         return $this->belongsToMany(Type_of_work::class);
     }
+    public function types(){
+        return $this->belongsToMany(Type::class);
+    }
 
     public function sluggable(): array
     {

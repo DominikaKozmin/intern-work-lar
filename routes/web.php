@@ -5,6 +5,8 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\OffersController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\RegisterEmployerController;
+use App\Http\Controllers\RegisterEmployeeController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -31,3 +33,10 @@ Route::resource('/artykuly', ArticlesController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/register-employer', [RegisterEmployerController::class, 'create']);
+Route::POST('/register-employer', [RegisterEmployerController::class, 'store']);
+
+
+Route::get('/register-employee', [RegisterEmployeeController::class, 'create']);
+Route::POST('/register-employee', [RegisterEmployeeController::class, 'store']);

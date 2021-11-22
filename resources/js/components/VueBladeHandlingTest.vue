@@ -11,6 +11,7 @@
             </div>
         </div>
         <div v-show="!showHighlightedOffers"> 
+            <button v-on:click="logek()"></button>
             <div class="row">
                 <div class="col">
                     <div v-for="item in 12" :key="item">
@@ -24,8 +25,8 @@
                 </div>
             </div>
         </div>
-
         <div v-show="showHighlightedOffers"> 
+            <button v-on:click="logek()"></button>
             <div class="row">
                 <div class="col">
                     <div v-for="item in 12" :key="item">
@@ -39,9 +40,8 @@
                 </div>
             </div>
         </div>
-
         <div class="d-flex justify-content-center ">
-            <a href="/oferty" class="uppercase btn btn-primary fw-bold rounded-pill">Zobacz wszystkie oferty</a>
+            <a href="/oferty" class="uppercase btn btn-primary fw-bold rounded-pill"><span>Zobacz wszystkie oferty</span><div class="d-inline-block ml-1"><img class="pb-3px" src="/img/icons/right-arrow-white-background.png" alt=""></div> </a>
         </div>
     </div>
 </template>
@@ -50,7 +50,7 @@
 import JobOfferTemplate from './JobOfferTemplate.vue'
 
 export default {
-    props: ['latestOffers', 'highlightedOffers'],
+    props: ['latest-offers', 'highlighted-offers'],
     data(){
         return {
             counter: 1,
@@ -59,7 +59,8 @@ export default {
     },
     methods: {
         logek(){
-            console.log(this.latestOffers[0].id)
+            alert(this.latestOffers[0].id);
+            console.log(this.latestOffers[0].id);
         }
     },
     components: {
@@ -69,5 +70,7 @@ export default {
 </script>
 
 <style>
-
+.pb-3px{
+    padding-bottom: 3px;
+}
 </style>

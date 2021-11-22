@@ -8,125 +8,9 @@
                 <!-- Left panel -->
                 <div class="col-3">
                     <div class = "widget-offer">
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Branża</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Umiejętności</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Poziomy</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Lokalizacja</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Kwoty wynagrodzenia</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Lokacja</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
-                        <h3 class="widget-title">
-                            <span class="border-bottom">Typy</span>
-                        </h3>
-                        @foreach ($offersCount as $offerCount)
-                            <div class="row border-bottom pb-2 mb-3 hover:border-bottom-blue">
-                                <div class="col-9">
-                                    <label>
-                                        <input type="radio" name="group1" value="Milk">
-                                        {{ $offerCount->name }}
-                                    </label><br/>
-                                </div>
-                                <div class="col">
-                                    <span class="float-end pl-1">{{ $offerCount->count }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                        <div class="my-4"><a href="#">Pokaż więcej</a></div>
+                        <div id="app">
+                            <offers-left data="{{ json_encode($leftBarData) }}"></offers-left>
+                        </div>
                     </div>
                 </div>
                 <!-- Middle panel -->
@@ -154,10 +38,30 @@
                     <div class = "widget-offer">
                         <h3 class="widget-title">
                             <span class="border-bottom">Ostatni pracodawcy</span>
+                           
                         </h3>   
+                        <ul>
+                            @foreach ($employers as $employer)
+                                <li>{{ $employer->name }}</li>
+                            @endforeach
+                        </ul>
                         <h3 class="widget-title">
                             <span class="border-bottom">Statystyki</span>
                         </h3>
+                        <div class="text-center pb-5">
+                            <div class="bg-secondary p-4">
+                                <div class="text-light fs-2">{{ $employersCount }}</div>
+                                <div class="uppercase text-warning">Pracodawcy</div>
+                            </div>
+                            <div class="bg-secondary p-4">
+                                <div class="text-light fs-2">0</div>
+                                <div class="uppercase text-warning">Utworzono CV</div>
+                            </div>
+                            <div class="bg-secondary p-4">
+                                <div class="text-light fs-2">{{ $countOffer }}</div>
+                                <div class="uppercase text-warning">Opublikowane prace</div>
+                            </div>
+                        </div>
                         <h3 class="widget-title">
                             <span class="border-bottom">Ostatnie prace</span>
                         </h3>

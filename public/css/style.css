@@ -43,8 +43,6 @@ body {
 
 @media (min-width: 992px) {
     #mainNav {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
         transition: padding-top 0.3s, padding-bottom 0.3s;
     }
     #mainNav .navbar-brand {
@@ -527,6 +525,22 @@ h3.widget-title {
     text-transform: uppercase;
 }
 
+.ml-1 {
+    margin-left: 0.25rem;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+.ml-3 {
+    margin-left: 0.75rem;
+}
+
+.ml-3 {
+    margin-left: 1rem;
+}
+
 .mr-12 {
     margin-right: 3rem;
 }
@@ -581,6 +595,10 @@ h3.widget-title {
 
 .w-1\/3 {
     width: 33.333333%;
+}
+
+.w-1\/3alt {
+    width: 33%;
 }
 
 .w-2\/5 {

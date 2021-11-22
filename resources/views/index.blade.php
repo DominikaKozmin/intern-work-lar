@@ -61,7 +61,7 @@
     
     <div class="mb-5 pb-5">
         <div id="app">
-            @php
+            @php         
                 // Without loop below user data won't be passed to vue component
                 // FIXME: I'm preaty sure that there is a better way to fix this problem.
                 foreach ($offers as $offer) {
@@ -71,9 +71,8 @@
                     $_ = $highlightedOffer->user->name;
                 }
             @endphp
-            <vue-test :latestOffers="{{ $offers }}" :highlightedOffers="{{ $highlightedOffers }}" ></vue-test>
+            <vue-test :latest-offers="{{ $offers }}" :highlighted-offers="{{ $highlightedOffers }}"></vue-test>
         </div>
-        {{ $highlightedOffers }}
     </div>
 
     <div class="row justify-content-around text-center rounded-pill">
@@ -81,13 +80,13 @@
           <em>Jestem</em>
           <h3 class = "text-present">Pracodawcą</h3>
           <div class="text">Dodawaj ogłoszenia pracy oraz szukaj pracowników</div>
-          <a href="/login" class="button">Zarejestruj firmę</a>
+          <a href="/register-employer" class="button">Zarejestruj firmę</a>
         </div>
         <div class="col-4">
             <em>Jestem</em>
             <h3 class = "text-present">Pracownikiem</h3>
             <div class="text">Przeszukaj bazę ofert pracy, aplikuj, zapisuj na później...</div>
-            <a href="/login" class="button">Zarejestruj się jako kandydat</a>
+            <a href="/register-employee" class="button">Zarejestruj się jako kandydat</a>
         </div>
       </div>
 

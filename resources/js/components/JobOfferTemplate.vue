@@ -4,7 +4,7 @@
         <img class="float-left" src="/img/images/user64.png" alt="">
     </div>
     <div class="d-inline-block w-auto overflow-hidden">
-        <div class="fs-5"><a href="/oferty/"></a>{{ data.title }}</div>
+        <div class="fs-5"><a v-bind:href="`/oferty/`+data.slug">{{ data.title }}</a></div>
         <div><img class="pr-1" src="/img/icons/location.png" alt="">Placholder location</div>
         <div><img class="pr-1" src="/img/icons/briefcase.png" alt="">{{ data.user.name }}</div>
         <div><img class="pr-1" src="/img/icons/salary.png" alt="">{{ data.salary }}</div>

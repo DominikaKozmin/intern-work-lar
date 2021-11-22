@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Models\Packet;
 
 class PagesController extends Controller
 {
@@ -19,11 +20,28 @@ class PagesController extends Controller
     }
 
     public function employee(){
-        return view('employee');
+        return view('employee')
+            ->with('offers', Offer::orderBy('created_at', 'DESC')
+            ->limit(12)
+            ->get())
+            ->with('highlightedOffers', Offer::orderBy('created_at', 'DESC')
+            ->where('industry', '=', '1')
+            ->limit(12)
+            ->get());
     }
 
     public function employer(){
-        return view('employer');
+        /*
+        $asd = Packet::orderBy('price', 'ASC')->get();
+        foreach($asd as $as){
+            $a = $as->scheme;
+        }
+        return $asd;
+        return Packet::orderBy('price', 'ASC')->get();
+        */
+        return view('employer')
+            ->with('packets', Packet::orderBy('price', 'ASC')
+            ->get());
     }
 
     public function accommodation(){

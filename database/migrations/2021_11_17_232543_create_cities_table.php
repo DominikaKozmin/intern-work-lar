@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TypesOfWork extends Migration
+class CreateCitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class TypesOfWork extends Migration
      */
     public function up()
     {
-        Schema::create('types_of_work', function(Blueprint $table){
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('city_id');
+            $table->foreignId('province_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 
@@ -26,6 +30,6 @@ class TypesOfWork extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cities');
     }
 }

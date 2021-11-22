@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class OfferTypeOfWork extends Migration
+class CreateOfferTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class OfferTypeOfWork extends Migration
      */
     public function up()
     {
-        Schema::create('offer_type_of_work', function (Blueprint $table) {
+        Schema::create('offer_type', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('offer_id');
-            $table->unsignedBigInteger('type_of_work_id');
+            $table->unsignedBigInteger('type_id');
             $table->foreign('offer_id')
                 ->references('id')
                 ->on('offers')
                 ->onDelete('cascade');
-            $table->foreign('type_of_work_id')
+            $table->foreign('type_id')
                 ->references('id')
-                ->on('types_of_work')
+                ->on('types')
                 ->onDelete('cascade');
         });
     }
@@ -35,6 +35,6 @@ class OfferTypeOfWork extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('offer_type');
     }
 }
