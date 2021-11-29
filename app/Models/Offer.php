@@ -10,7 +10,7 @@ class Offer extends Model
 {
     use HasFactory;
     use Sluggable;
-
+    protected $with = ['user','levels'];
     /**
      * The attributes that are mass assignable.
      *
@@ -42,7 +42,9 @@ class Offer extends Model
         "deadline",
         "content",
     ];
-
+    public function levels(){
+        return $this->belongsToMany(Level::class);
+    }
     
 
     public function industryTable(){

@@ -61,14 +61,17 @@
     
     <div class="mb-5 pb-5">
         <div id="app">
-            @php         
+            @php
+                        
                 // Without loop below user data won't be passed to vue component
                 // FIXME: I'm preaty sure that there is a better way to fix this problem.
                 foreach ($offers as $offer) {
-                    $_ = $offer->user->name;
+                    $_ = $offer->user;
                 }
+                //dd($offers); 
+                //dd($offers);
                 foreach ($highlightedOffers as $highlightedOffer) {
-                    $_ = $highlightedOffer->user->name;
+                    $_ = $highlightedOffer->user;
                 }
             @endphp
             <vue-test :latest-offers="{{ $offers }}" :highlighted-offers="{{ $highlightedOffers }}"></vue-test>

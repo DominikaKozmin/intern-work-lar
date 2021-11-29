@@ -29,5 +29,8 @@
           </svg>
           </button>
       </div>
+      <div id="app">
+        <popup-button></popup-button>
+      </div>
   </div>
 @endsection

@@ -24,6 +24,8 @@ Vue.component('drop-menu', require('./components/DropDownMenu.vue').default);
 Vue.component('vue-test', require('./components/VueBladeHandlingTest.vue').default);
 Vue.component('offers-left', require('./components/OffersLeftBar.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('offers-middle-panel', require('./components/OffersMiddlePanel.vue').default);
+Vue.component('popup-button', require('./components/PopupButton.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,4 +35,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+});
+
+const app1 = new Vue({
+    el: '#app1',
 });

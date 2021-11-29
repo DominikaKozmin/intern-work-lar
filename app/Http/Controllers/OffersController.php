@@ -39,20 +39,24 @@ class OffersController extends Controller
         $typesCount = Type::orderBy('id', 'ASC')->get()->toarray();
         $typesCount['tablename'] = "Typy";
         array_push($index, $industryCount, $ablilitesCount, $levelsCount, $salaryCount, $countriesCount, $typesCount);
+        //dd(Offer::orderBy('created_at', 'DESC')->get()->toarray());
         //$index = json_encode($index);
         //$index="zxcv";
         //dd(gettype($index));
         $offersCountlist = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
         //$ablilitesCountList = DB::select('select abilities.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
+        
+        // TESTY
+        //$test = Level::find(2)->levels;
+        $test = Offer::orderBy('created_at', 'DESC')->get();
+        dd(Offer::find(2));
+
+
+        // KONIEC TESTÓW
+
         return view("offers.index")
-            ->with('offers', Offer::orderBy('created_at', 'DESC')->get())
-            ->with('offersCountlist', $offersCountlist)
-            ->with('ablilitesCountList', Ability::orderBy('id', 'ASC')->get())
-            ->with('salaryTiers', SalaryTier::orderBy('id', 'ASC')->get())
-            ->with('CountriesCountList', Country::orderBy('id', 'ASC')->get())
-            ->with('typesCount', Type::orderBy('id', 'ASC')->get())
-            ->with('countriesCount', Country::orderBy('id', 'ASC')->get())
-            ->with('levelsCount', Level::orderBy('id', 'ASC')->get())
+            ->with('offers', Offer::orderBy('created_at', 'DESC')->get()->toarray())
+            ->with('offersRightPanel', Offer::orderBy('created_at', 'DESC')->get())
             ->with('employers', User::whereNotNull('company_name')->orderBy('created_at', 'DESC')->limit(5)->get())
             ->with('employersCount', User::whereNotNull('company_name')->count())
             ->with('countOffer', Offer::whereNotNull('id')->count())

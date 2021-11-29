@@ -40,3 +40,5 @@ Route::POST('/register-employer', [RegisterEmployerController::class, 'store']);
 
 Route::get('/register-employee', [RegisterEmployeeController::class, 'create']);
 Route::POST('/register-employee', [RegisterEmployeeController::class, 'store']);
+
+Route::get('/test', [PagesController::class, 'test']);

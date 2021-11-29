@@ -9,36 +9,29 @@
                 <div class="col-3">
                     <div class = "widget-offer">
                         <div id="app">
+
                             <offers-left data="{{ json_encode($leftBarData) }}"></offers-left>
                         </div>
                     </div>
                 </div>
                 <!-- Middle panel -->
-                <div class="col-6">
-                    <div>
-                        <div class="bg-white w-full p-4 mb-4">
-                            Placeholder
-                        </div>
-                    </div>
-                    <div>
-                        @foreach ($offers as $offer)
-                            @include('components.job_offer', [
-                                'Slug' => $offer->slug,
-                                'Title' => $offer->title,
-                                'Location' => 'Lokacja placeholder',
-                                'Username' => $offer->user->name,
-                                'Salary' => $offer->salary,
-                                'Created_at' => $offer->created_at
-                            ])
-                        @endforeach
-                    </div>
+                @php
+                    $i=0;
+                    $newArray = [];
+                    foreach ($offers as $offer) {
+                        array_push($newArray, $offer);
+                        $newArray[sizeof($newArray)-1] += ['name' => $offersRightPanel[$i]->user->name];
+                        $i++;
+                    }
+                @endphp
+                <div id="app1" class="col-6">
+                    <offers-middle-panel offers="{{ json_encode($newArray) }}"></offers-middle-panel>
                 </div>
                 <!-- Right panel -->
                 <div class="col-3">
                     <div class = "widget-offer">
                         <h3 class="widget-title">
                             <span class="border-bottom">Ostatni pracodawcy</span>
-                           
                         </h3>   
                         <ul>
                             @foreach ($employers as $employer)
@@ -66,10 +59,10 @@
                             <span class="border-bottom">Ostatnie prace</span>
                         </h3>
                         <ul>
-                            @foreach ($offers as $offer)
+                            @foreach ($offersRightPanel as $offerRightPanel)
                                 <li>
-                                    <a class="fw-bold text-dark" href="/oferty/{{ $offer->slug }}">{{ $offer->title }}</a><br>
-                                    opublikowano w <a class="text-success" href="/category/{{ $offer->industryTable->id }}">{{ $offer->industryTable->name }}</a> 
+                                    <a class="fw-bold text-dark" href="/oferty/{{ $offerRightPanel->slug }}">{{ $offerRightPanel->title }}</a><br>
+                                    opublikowano w <a class="text-success" href="/category/{{ $offerRightPanel->industryTable->id }}">{{ $offerRightPanel->industryTable->name }}</a> 
                                 </li>                   
                             @endforeach
                         </ul>

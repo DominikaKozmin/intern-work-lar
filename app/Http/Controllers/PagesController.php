@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Packet;
+use App\Models\Color_scheme;
 
 class PagesController extends Controller
 {
@@ -31,14 +32,6 @@ class PagesController extends Controller
     }
 
     public function employer(){
-        /*
-        $asd = Packet::orderBy('price', 'ASC')->get();
-        foreach($asd as $as){
-            $a = $as->scheme;
-        }
-        return $asd;
-        return Packet::orderBy('price', 'ASC')->get();
-        */
         return view('employer')
             ->with('packets', Packet::orderBy('price', 'ASC')
             ->get());

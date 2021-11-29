@@ -11,6 +11,6 @@ class Color_scheme extends Model
     public $timestamps = false;
     protected $table = 'color_schemes';
     public function scheme(){
-        return $this->belongsToMany(Packet::class);
+        return $this->belongsTo(Packet::class, 'foreign_key' , 'color_scheme_id');
     }
 }
