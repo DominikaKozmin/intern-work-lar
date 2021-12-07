@@ -42,10 +42,14 @@ class Offer extends Model
         "deadline",
         "content",
     ];
+    
+    public function abilites(){
+        return $this->belongsToMany(Ability::class);
+    }
+
     public function levels(){
         return $this->belongsToMany(Level::class);
     }
-    
 
     public function industryTable(){
         return $this->belongsTo(Industry::class, 'industry', 'id');

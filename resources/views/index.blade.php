@@ -77,7 +77,9 @@
             <vue-test :latest-offers="{{ $offers }}" :highlighted-offers="{{ $highlightedOffers }}"></vue-test>
         </div>
     </div>
-
+        <div id="app1">
+            <partners></partners>
+        </div>
     <div class="row justify-content-around text-center rounded-pill">
         <div class="col-4">
           <em>Jestem</em>

@@ -47,6 +47,7 @@ import Dropdown from 'vue-simple-search-dropdown';
 import PopupButton from './PopupButton.vue'
 
 export default {
+    props: ['offers', 'id'],
     data(){
         return {
             jsondata: null,
@@ -56,7 +57,7 @@ export default {
         }
     },
     created() {
-        fetch("http://localhost:8000/api/latestoffers")
+        fetch("http://localhost:8000/api/latestoffers/" + this.id)
         .then(response => response.json())
         .then(data => (this.jsondata = data));
     },
@@ -78,7 +79,7 @@ export default {
     },
     watch:{
         selected: function(val){
-            fetch("http://localhost:8000/api/" + val.api)
+            fetch("http://localhost:8000/api/" + val.api + "/" + this.id)
             .then(response => response.json())
             .then(data => (this.jsondata = data));
         }

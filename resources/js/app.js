@@ -25,7 +25,10 @@ Vue.component('vue-test', require('./components/VueBladeHandlingTest.vue').defau
 Vue.component('offers-left', require('./components/OffersLeftBar.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('offers-middle-panel', require('./components/OffersMiddlePanel.vue').default);
+Vue.component('category-middle-panel', require('./components/CategoryMiddlePanel.vue').default);
 Vue.component('popup-button', require('./components/PopupButton.vue').default);
+Vue.component('partners', require('./components/Partners.vue').default);
+Vue.component('offers-left-middle-merged', require('./components/OffersLeftMiddleMerged.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

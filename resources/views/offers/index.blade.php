@@ -6,26 +6,10 @@
         <div class="container">
             <div class="row">
                 <!-- Left panel -->
-                <div class="col-3">
-                    <div class = "widget-offer">
-                        <div id="app">
-
-                            <offers-left data="{{ json_encode($leftBarData) }}"></offers-left>
-                        </div>
+                <div class="col-9">
+                    <div id="app">
+                        <offers-left-middle-merged data="{{ json_encode($leftBarData) }}"></offers-left-middle-merged>
                     </div>
-                </div>
-                <!-- Middle panel -->
-                @php
-                    $i=0;
-                    $newArray = [];
-                    foreach ($offers as $offer) {
-                        array_push($newArray, $offer);
-                        $newArray[sizeof($newArray)-1] += ['name' => $offersRightPanel[$i]->user->name];
-                        $i++;
-                    }
-                @endphp
-                <div id="app1" class="col-6">
-                    <offers-middle-panel offers="{{ json_encode($newArray) }}"></offers-middle-panel>
                 </div>
                 <!-- Right panel -->
                 <div class="col-3">

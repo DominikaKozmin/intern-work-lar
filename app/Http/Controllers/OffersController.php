@@ -25,34 +25,41 @@ class OffersController extends Controller
      */
     public function index()
     {
+        
         $index = [];
         $industryCount = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
         $industryCount['tablename'] = "Branża";
+
         $ablilitesCount = Ability::orderBy('id', 'ASC')->get()->toarray();
+        for($i=0; $i<count($ablilitesCount);$i++){
+            $ablilitesCount[$i]['count'] = Ability::find($i+1)->offers()->count();
+        }
         $ablilitesCount['tablename'] = "Umiejętności";
+
         $levelsCount = Level::orderBy('id', 'ASC')->get()->toarray();
+        for($i=0; $i<count($levelsCount);$i++){
+            $levelsCount[$i]['count'] = Level::find($i+1)->offers()->count();
+        }
         $levelsCount['tablename'] = "Poziomy";
+
         $salaryCount = Salary::orderBy('id', 'ASC')->get()->toarray();
+        $salaryCount[0]['count'] = Offer::where('salary','>','2000')->count();
+        $salaryCount[1]['count'] = Offer::where('salary','>','4000')->count();
         $salaryCount['tablename'] = "Kwoty Wynagrodzenia";
+
         $countriesCount = Country::orderBy('id', 'ASC')->get()->toarray();
         $countriesCount['tablename'] = "Lokacja";
+
         $typesCount = Type::orderBy('id', 'ASC')->get()->toarray();
+        for($i=0; $i<count($typesCount);$i++){
+            $typesCount[$i]['count'] = Type::find($i+1)->offers()->count();
+        }
         $typesCount['tablename'] = "Typy";
+
         array_push($index, $industryCount, $ablilitesCount, $levelsCount, $salaryCount, $countriesCount, $typesCount);
-        //dd(Offer::orderBy('created_at', 'DESC')->get()->toarray());
-        //$index = json_encode($index);
-        //$index="zxcv";
-        //dd(gettype($index));
+
         $offersCountlist = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
-        //$ablilitesCountList = DB::select('select abilities.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
-        
-        // TESTY
-        //$test = Level::find(2)->levels;
-        $test = Offer::orderBy('created_at', 'DESC')->get();
-        dd(Offer::find(2));
 
-
-        // KONIEC TESTÓW
 
         return view("offers.index")
             ->with('offers', Offer::orderBy('created_at', 'DESC')->get()->toarray())
@@ -73,8 +80,11 @@ class OffersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('offers.create');
+    {  
+        return view('offers.create')
+            ->with('abilities', Ability::All())
+            ->with('levels', Level::All())
+            ->with('types', Type::All());
     }
 
     /**
@@ -85,7 +95,6 @@ class OffersController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $request->validate([
             'title' => ['required', 'max:255'],
             'content' => 'required',
@@ -93,16 +102,24 @@ class OffersController extends Controller
             'deadline' => 'required|date',
         ]);
 
-        Offer::create([
-            'title' => $request->input('title'),
-            'content' => Purifier::clean($request->input('content')),
-            'slug' => SlugService::createSlug(Offer::class, 'slug', $request->title),
-            'salary' => $request->input('salary'),
-            'industry' => $request->input('industry'),
-            'deadline' => $request->input('deadline'),
-            'user_id' => auth()->user()->id
-        ]);
-
+        $offer = new Offer();
+        $offer->title = $request->input('title');
+        $offer->content = Purifier::clean($request->input('content'));
+        $offer->slug = SlugService::createSlug(Offer::class, 'slug', $request->title);
+        $offer->salary = $request->input('salary');
+        $offer->industry = $request->input('industry');
+        $offer->deadline = $request->input('deadline');
+        $offer->user_id = auth()->user()->id;
+        $offer->save();
+        foreach($request->abilities as $ability){
+            $offer->abilites()->attach($ability);
+        }
+        foreach($request->levels as $level){
+            $offer->levels()->attach($level);
+        }
+        foreach($request->types as $type){
+            $offer->types()->attach($type);
+        }
         return redirect('/oferty')->with('message', 'Dodano ofertę');
     }
 
@@ -132,8 +149,27 @@ class OffersController extends Controller
      */
     public function edit($slug)
     {
+        $offers = Offer::where('slug', $slug)->first();
+        $abilities = Ability::All()->toArray();
+        $levels = Level::All()->toArray();
+        $types = Type::All()->toArray();
+        $checkedAbilities = $offers->abilites()->get()->toarray();
+        $checkedLevels = $offers->levels()->get()->toarray();
+        $checkedTypes = $offers->types()->get()->toarray();
+        foreach($checkedAbilities as $checkedAbility){
+            $abilities[$checkedAbility['id']-1]['checked'] = true;
+        }
+        foreach($checkedLevels as $checkedLevel){
+            $levels[$checkedLevel['id']-1]['checked'] = true;
+        }
+        foreach($checkedTypes as $checkedType){
+            $types[$checkedType['id']-1]['checked'] = true;
+        }
         return view('offers.edit')
-            ->with('offer', Offer::where('slug', $slug)->first());
+            ->with('offer', $offers)
+            ->with('abilities', $abilities)
+            ->with('levels', $levels)
+            ->with('types', $types);
     }
 
     /**
@@ -145,7 +181,37 @@ class OffersController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'max:255'],
+            'content' => 'required',
+            'industry' => 'required',
+            'deadline' => 'required|date',
+        ]);
+
+        $offer = Offer::where('slug', $slug);
+        $offer->title = $request->input('title');
+        $offer->content = Purifier::clean($request->input('content'));
+        $offer->slug = SlugService::createSlug(Offer::class, 'slug', $request->title);
+        $offer->salary = $request->input('salary');
+        $offer->industry = $request->input('industry');
+        $offer->deadline = $request->input('deadline');
+        $offer->user_id = auth()->user()->id;
+        $offer->save();
+        $offer->abilites()->detach();
+        $offer->levels()->detach();
+        $offer->types()->detach();
+        foreach($request->abilities as $ability){
+            $offer->abilites()->attach($ability);
+        }
+        foreach($request->levels as $level){
+            $offer->levels()->attach($level);
+        }
+        foreach($request->types as $type){
+            $offer->types()->attach($type);
+        }
+
+        return redirect('/artykuly')
+            ->with('message', 'Zaktualizowano ofertę');
     }
 
     /**
