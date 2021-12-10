@@ -47,16 +47,18 @@ import Dropdown from 'vue-simple-search-dropdown';
 import PopupButton from './PopupButton.vue'
 
 export default {
+    props:['filters'],
     data(){
         return {
             jsondata: null,
             showAsList: true,
             selected: { id: null, api: null, name: null },
-            totalVuePackages: null
+            totalVuePackages: null,
+            filterParams: null
         }
     },
     created() {
-        fetch("http://localhost:8000/api/latestoffers")
+        fetch("http://localhost:8000/api/test?level=1,2,3")
         .then(response => response.json())
         .then(data => (this.jsondata = data));
     },
@@ -74,11 +76,65 @@ export default {
     computed:{
         apiEndpoint: function(){
             return this.selected.api
-        }
+        },
     },
     watch:{
         selected: function(val){
             fetch("http://localhost:8000/api/" + val.api)
+            .then(response => response.json())
+            .then(data => (this.jsondata = data));
+        },
+        filters: function(val){
+            let industry = "?industry="
+            if(this.filters[0]!=undefined){
+                this.filters[0].forEach((element,index) => {
+                    if(element){
+                        industry += index+1 + ","
+                    }    
+                });
+            }
+            let ability = "&ability="
+            if(this.filters[1]!=undefined){
+                this.filters[1].forEach((element,index) => {
+                    if(element){
+                        ability += index+1 + ","
+                    }    
+                });
+            }
+            let level = "&level="
+            if(this.filters[2]!=undefined){
+                this.filters[2].forEach((element,index) => {
+                    if(element){
+                        level += index+1 + ","
+                    }    
+                });
+            }
+            let salary = "&salary="
+            if(this.filters[3]!=undefined){
+                this.filters[3].forEach((element,index) => {
+                    if(element){
+                        salary += index+1 + ","
+                    }    
+                });
+            }
+            let location = "&location="
+            if(this.filters[4]!=undefined){           
+                this.filters[4].forEach((element,index) => {
+                    if(element){
+                        location += index+1 + ","
+                    }    
+                });
+            }
+            let type = "&type="
+            if(this.filters[5]!=undefined){
+                this.filters[5].forEach((element,index) => {
+                    if(element){
+                        type += index+1 + ","
+                    }    
+                });
+            }
+            console.log("http://localhost:8000/api/test" + industry + ability + level + salary + location + type)
+            fetch("http://localhost:8000/api/test" + industry + ability + level + salary + location + type)
             .then(response => response.json())
             .then(data => (this.jsondata = data));
         }

@@ -4,7 +4,9 @@
             <offers-left-bar :data="data" @filterData="addFilterData"></offers-left-bar>
         </div>
         <div class="col-9">
-            <offers-middle-panel :filters="options"></offers-middle-panel>
+            <div class="ml-5">
+                <offers-middle-panel :filters="filterData"></offers-middle-panel>
+            </div>
         </div>
     </div>
 </template>
@@ -16,8 +18,7 @@ export default {
     data(){
         return{
             filterData: null,
-            options: null,
-            counter: 1
+            options: null
         }
     },
     methods:{

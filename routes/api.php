@@ -32,3 +32,7 @@ Route::get('partners', [MiscellaneousApiController::class, 'partners']);
 Route::get('abilities', [MiscellaneousApiController::class, 'abilities']);
 Route::get('levels', [MiscellaneousApiController::class, 'levels']);
 Route::get('types', [MiscellaneousApiController::class, 'types']);
+Route::get('locations', [MiscellaneousApiController::class, 'locations']);
+Route::get('industries', [MiscellaneousApiController::class, 'industries']);
+
+Route::get('test', [MiscellaneousApiController::class, 'test']);

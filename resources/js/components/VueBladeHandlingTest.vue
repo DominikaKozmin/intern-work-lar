@@ -11,7 +11,6 @@
             </div>
         </div>
         <div v-show="!showHighlightedOffers"> 
-            <button v-on:click="logek()"></button>
             <div class="row">
                 <div class="col">
                     <div v-for="item in 12" :key="item">
@@ -26,7 +25,6 @@
             </div>
         </div>
         <div v-show="showHighlightedOffers"> 
-            <button v-on:click="logek()"></button>
             <div class="row">
                 <div class="col">
                     <div v-for="item in 12" :key="item">
@@ -55,12 +53,6 @@ export default {
         return {
             counter: 1,
             showHighlightedOffers: false
-        }
-    },
-    methods: {
-        logek(){
-            alert(this.latestOffers[0].id);
-            console.log(this.latestOffers[0].id);
         }
     },
     components: {

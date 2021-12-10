@@ -7,6 +7,9 @@
     </div>
     
     <div>
+        <div id="app2">
+            <main-page-search></main-page-search>
+        </div>
         <!--
         <div class="d-flex" id="app">
             <drop-test

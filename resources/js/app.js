@@ -29,6 +29,7 @@ Vue.component('category-middle-panel', require('./components/CategoryMiddlePanel
 Vue.component('popup-button', require('./components/PopupButton.vue').default);
 Vue.component('partners', require('./components/Partners.vue').default);
 Vue.component('offers-left-middle-merged', require('./components/OffersLeftMiddleMerged.vue').default);
+Vue.component('main-page-search', require('./components/MainPageSearch.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -42,4 +43,8 @@ const app = new Vue({
 
 const app1 = new Vue({
     el: '#app1',
+});
+
+const app2 = new Vue({
+    el: '#app2',
 });

@@ -5,7 +5,7 @@
         <h1 class="standard pl-4">Oferty pracy</h1>
         <div class="container">
             <div class="row">
-                <!-- Left panel -->
+                <!-- Left and Middle panel -->
                 <div class="col-9">
                     <div id="app">
                         <offers-left-middle-merged data="{{ json_encode($leftBarData) }}"></offers-left-middle-merged>
