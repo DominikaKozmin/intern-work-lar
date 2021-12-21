@@ -14,6 +14,7 @@ use App\Models\Offer;
 use App\Models\Salary;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\City;
 
 class MiscellaneousApiController extends Controller
 {
@@ -35,95 +36,26 @@ class MiscellaneousApiController extends Controller
     public function industries(){
         return Industry::all();
     }
+    public function cities(){
+        return City::all();
+    }
     public function test(){
-        return Offer::whereHas('levels', function($q){
-            $industry =  Request()->get('industry');
-            if($industry == null){
-                $temp = [];
-                foreach(Industry::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $industry=$temp;
-            }
-            else{
-                $industry = explode(',', $industry);
-            }
-
-            $ability = Request()->get('ability');
-            if($ability == null){
-                $temp = [];
-                foreach(Ability::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $ability=$temp;
-            }
-
-            $level = Request()->get('level');
-            if($level == null){
-                $temp = [];
-                foreach(Level::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $level=$temp;
-            }
-            else{
-                $level = explode(',', $level);
-            }
-            
-            $salary = Request()->get('salary');
-            if($salary == null){
-                $temp = [];
-                foreach(Salary::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $salary=$temp;
-            }
-
-            $location = Request()->get('location');
-            if($location == null){
-                $temp = [];
-                foreach(Location::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $location=$temp;
-            }
-
-            $type = Request()->get('type');
-            if($type == null){
-                $temp = [];
-                foreach(Type::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $type=$temp;
-            }
-            $q->whereIn('offers.industry', $industry);
-            $q->whereIn('levels.id', $level);
-        })->whereHas('abilities', function($q){
-            $ability = Request()->get('ability');
-            if($ability == null){
-                $temp = [];
-                foreach(Ability::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $ability=$temp;
-            }
-            else{
-                $ability = explode(',', $ability);
-            }
-            $q->whereIn('abilities.id', $ability);
-        })->whereHas('types', function($q){
-            $type = Request()->get('type');
-            if($type == null){
-                $temp = [];
-                foreach(Type::select('id')->get()->toarray() as $table){
-                    array_push($temp, $table['id']);
-                }
-                $type=$temp;
-            }
-            else{
-                $type = explode(',', $type);
-            }
-            $q->whereIn('types.id', $type);
-        })->get();
+        $orderBy = Request()->get('orderBy') == null ? 'created_at' : Request()->get('orderBy');
+        $order = Request()->get('order') == 'true' ? 'ASC' : 'DESC';
+        return Offer::query()
+            ->where(function($query){
+                return $query->whereIn('industry', filterParametersCollection(Request()->get('industry'), Industry::class));
+            })
+            ->whereHas('abilities', function($query){
+                return $query->whereIn('abilities.id', filterParametersCollection(Request()->get('ability'), Ability::class));
+            })
+            ->whereHas('levels', function($query){
+                return $query->whereIn('levels.id', filterParametersCollection(Request()->get('level'), Level::class));
+            })
+            ->whereHas('types', function($query){
+                return $query->whereIn('types.id', filterParametersCollection(Request()->get('type'), Type::class));
+            })
+            ->orderBy($orderBy, $order)
+            ->get();
     }
 }

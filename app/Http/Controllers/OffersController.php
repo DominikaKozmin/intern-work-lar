@@ -25,16 +25,25 @@ class OffersController extends Controller
      */
     public function index()
     {
-        
+        $searchedAbility = Request()->get('ability');
+        $searchedIndustry= Request()->get('industry');
+        $searchedLocation = Request()->get('location');
+
         $index = [];
-        $industryCount = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
+        $industryCount = json_decode(json_encode(DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;')),true) ;
         $industryCount['tablename'] = "Branża";
+        if($searchedIndustry){
+            $industryCount[$searchedIndustry-1]['checked'] = true;
+        }
 
         $ablilitesCount = Ability::orderBy('id', 'ASC')->get()->toarray();
         for($i=0; $i<count($ablilitesCount);$i++){
             $ablilitesCount[$i]['count'] = Ability::find($i+1)->offers()->count();
         }
         $ablilitesCount['tablename'] = "Umiejętności";
+        if($searchedAbility){
+            $ablilitesCount[$searchedAbility-1]['checked'] = true;
+        }
 
         $levelsCount = Level::orderBy('id', 'ASC')->get()->toarray();
         for($i=0; $i<count($levelsCount);$i++){
@@ -49,6 +58,9 @@ class OffersController extends Controller
 
         $countriesCount = Country::orderBy('id', 'ASC')->get()->toarray();
         $countriesCount['tablename'] = "Lokacja";
+        if($searchedLocation){
+            $countriesCount[$searchedLocation-1]['checked'] = true;
+        }
 
         $typesCount = Type::orderBy('id', 'ASC')->get()->toarray();
         for($i=0; $i<count($typesCount);$i++){

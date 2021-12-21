@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccommodationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\OffersController;
@@ -22,13 +23,12 @@ Route::get('/zakwaterowanie', 'App\Http\Controllers\AccommodationController@inde
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/pracownik', [PagesController::class, 'employee']);
 Route::get('/pracodawca', [PagesController::class, 'employer']);
-Route::get('/zakwaterowanie', [PagesController::class, 'accommodation']);
 Route::get('/category/{id}', [CategoriesController::class, 'show']);
 
 
 Route::resource('/oferty', OffersController::class);
 Route::resource('/artykuly', ArticlesController::class);
-
+Route::resource('/zakwaterowanie', AccommodationsController::class);
 
 Auth::routes();
 

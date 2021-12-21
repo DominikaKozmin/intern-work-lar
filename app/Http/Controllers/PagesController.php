@@ -36,8 +36,4 @@ class PagesController extends Controller
             ->with('packets', Packet::orderBy('price', 'ASC')
             ->get());
     }
-
-    public function accommodation(){
-        return view('accommodation');
-    }
 }

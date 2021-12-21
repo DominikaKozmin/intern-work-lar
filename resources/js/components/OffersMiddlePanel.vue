@@ -12,6 +12,8 @@
                     name="zipcode"
                     placeholder="Ustawienia domyślne">
                 </Dropdown>
+                <label for="">odwórć</label>
+                <input type="checkbox" name="order" id="" v-model="order">
                 <popup-button class="d-inline-block float-end"></popup-button>
             </div>
         </div>
@@ -54,11 +56,13 @@ export default {
             showAsList: true,
             selected: { id: null, api: null, name: null },
             totalVuePackages: null,
-            filterParams: null
+            filterParams: null,
+            order: false
+
         }
     },
     created() {
-        fetch("http://localhost:8000/api/test?level=1,2,3")
+        fetch("http://localhost:8000/api/test")
         .then(response => response.json())
         .then(data => (this.jsondata = data));
     },
@@ -71,6 +75,53 @@ export default {
     methods: {
         validateSelection(selection){
             this.selected = selection;
+        },
+        parseFiltersData(filterIndex){
+            let value = ""
+            if(this.filters[filterIndex]!=undefined){
+                this.filters[filterIndex].forEach((element,index) => {
+                    if(element){
+                        value += index+1 + ","
+                    }    
+                });
+            }
+            return value
+        },
+        update(){
+            let industry = "?industry="
+            let ability = "&ability="
+            let level = "&level="
+            let salary = "&salary="
+            let location = "&location="
+            let type = "&type="
+            if(this.filters!=null){
+                industry += this.parseFiltersData(0)
+                ability += this.parseFiltersData(1)
+                level += this.parseFiltersData(2)
+                salary += this.parseFiltersData(3)
+                location += this.parseFiltersData(4)
+                type += this.parseFiltersData(5)
+            }
+            let orderBy = "&orderBy=";
+            switch (this.selected['id']){
+                case 1:
+                    orderBy += 'created_at'
+                break;
+                case 2:
+                    orderBy += 'salary'
+                break;
+                case 3:
+                    orderBy += 'title'
+                break;
+                default:
+                    orderBy += 'title'
+                break;
+            }
+            let order = "&order=" + this.order
+            console.log("http://localhost:8000/api/test" + industry + ability + level + salary + location + type + orderBy + order)
+            fetch("http://localhost:8000/api/test" + industry + ability + level + salary + location + type + orderBy + order)
+            .then(response => response.json())
+            .then(data => (this.jsondata = data));
         }
     },
     computed:{
@@ -80,63 +131,13 @@ export default {
     },
     watch:{
         selected: function(val){
-            fetch("http://localhost:8000/api/" + val.api)
-            .then(response => response.json())
-            .then(data => (this.jsondata = data));
+            this.update()
         },
         filters: function(val){
-            let industry = "?industry="
-            if(this.filters[0]!=undefined){
-                this.filters[0].forEach((element,index) => {
-                    if(element){
-                        industry += index+1 + ","
-                    }    
-                });
-            }
-            let ability = "&ability="
-            if(this.filters[1]!=undefined){
-                this.filters[1].forEach((element,index) => {
-                    if(element){
-                        ability += index+1 + ","
-                    }    
-                });
-            }
-            let level = "&level="
-            if(this.filters[2]!=undefined){
-                this.filters[2].forEach((element,index) => {
-                    if(element){
-                        level += index+1 + ","
-                    }    
-                });
-            }
-            let salary = "&salary="
-            if(this.filters[3]!=undefined){
-                this.filters[3].forEach((element,index) => {
-                    if(element){
-                        salary += index+1 + ","
-                    }    
-                });
-            }
-            let location = "&location="
-            if(this.filters[4]!=undefined){           
-                this.filters[4].forEach((element,index) => {
-                    if(element){
-                        location += index+1 + ","
-                    }    
-                });
-            }
-            let type = "&type="
-            if(this.filters[5]!=undefined){
-                this.filters[5].forEach((element,index) => {
-                    if(element){
-                        type += index+1 + ","
-                    }    
-                });
-            }
-            console.log("http://localhost:8000/api/test" + industry + ability + level + salary + location + type)
-            fetch("http://localhost:8000/api/test" + industry + ability + level + salary + location + type)
-            .then(response => response.json())
-            .then(data => (this.jsondata = data));
+            this.update()
+        },
+        order: function(val){
+            this.update()
         }
     }
 }

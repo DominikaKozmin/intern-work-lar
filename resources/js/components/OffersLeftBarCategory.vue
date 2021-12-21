@@ -3,6 +3,7 @@
         <h3 class="widget-title">
             <span class="border-bottom">{{ table.tablename }}</span>
         </h3>
+        <div v-if="fillPicked()"></div>
         <div v-for="(value, index) in table" :key="index">
             <div v-if="value['name'] != null">
                 <div v-if="index <=4 || showMore">
@@ -45,7 +46,18 @@ export default {
         },
         emit(){
             setTimeout(() => {  this.$emit('chosen-filter', this.picked); }, 1);
+        },
+        fillPicked(){
+            let proxy = this.table;
+            for (const [key, value] of Object.entries(proxy)){
+                if(value['checked']){
+                    this.picked[key] = true
+                }
+            }
         }
+    },
+    created(){
+        this.emit()
     },
     components:{
         OffersLeftBarSingleCategory
