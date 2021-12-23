@@ -30,9 +30,6 @@
       <div class="text">... do profili zawodowych Pracowników z Ukrainy!</div>
       <div class="">
         @foreach ($packets as $packet)
-        @php
-           //dd($packet->buinsess_size); 
-        @endphp
             @php
                 $test = $packet->renewals
             @endphp

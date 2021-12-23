@@ -23,18 +23,20 @@
                     {{ $error }}
                 </div>
             @endforeach
-    @endif  
+    @endif
+    @include('components.show_message')  
     <div>
-        <form action="/oferty" method="POST" enctype="multipart/form-data">
+        <form action="/oferty/{{ $offer->slug }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             Tytuł<br>
-            <input class="w-full" type="text" name="title" placeholder="Tytuł..."><br><br>
+            <input class="w-full" type="text" name="title" placeholder="Tytuł..." value="{{ $offer->title }}"><br><br>
             Wynagrodzenie<br>
-            <input class="w-full" type="text" name="salary" placeholder="Wynagrodzenie..."><br><br>
+            <input class="w-full" type="text" name="salary" placeholder="Wynagrodzenie..." value="{{ $offer->salary }}"><br><br>
             Branża<br>
-            <input class="w-full" type="text" name="industry" placeholder="Branża..."><br><br>
+            <input class="w-full" type="text" name="industry" placeholder="Branża..." value="{{ $offer->industry }}"><br><br>
             Czas trwania oferty<br>
-            <input class="w-full" type="date" name="deadline" placeholder="Tytuł..."><br><br>
+            <input class="w-full" type="date" name="deadline" value="{{ $offer->deadline }}"><br><br>
             <div class="border">
                 Umiejętności<br>
                 <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
@@ -66,7 +68,7 @@
                 </div>
             </div>
             Opis<br>
-            <textarea id="content" name="content"></textarea><br>
+            <textarea id="content" name="content">{{ $offer->content }}</textarea><br>
             <div class="input-group">
                 <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Wyślij</button>
             </div>

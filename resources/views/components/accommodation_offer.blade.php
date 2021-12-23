@@ -14,7 +14,16 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center">
-                <div></div>
+                <div>
+                    @if (Auth::check())
+                        <form class="d-inline-block float-end" action="/zakwaterowanie/{{ $accommodation->slug }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">Usuń</button>
+                        </form>
+                        <a class="btn btn-info float-end" href="/zakwaterowanie/{{ $accommodation->slug }}/edit/">Edytuj</a>
+                    @endif
+                </div>
                 <div class="text-primary fw-bold"><a href="zakwaterowanie/{{ $accommodation->slug }}">Czytaj dalej <img src="{{ asset('img/icons/right-arrow.png') }}" alt=""></a></div>
             </div>
         </div>

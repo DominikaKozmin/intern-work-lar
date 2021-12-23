@@ -18,6 +18,10 @@ use Purifier;
 
 class OffersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -96,7 +100,8 @@ class OffersController extends Controller
         return view('offers.create')
             ->with('abilities', Ability::All())
             ->with('levels', Level::All())
-            ->with('types', Type::All());
+            ->with('types', Type::All())
+            ->with('industries', Industry::All());
     }
 
     /**
@@ -109,11 +114,15 @@ class OffersController extends Controller
     {
         $request->validate([
             'title' => ['required', 'max:255'],
+            'salary' => 'required|numeric',
             'content' => 'required',
             'industry' => 'required',
             'deadline' => 'required|date',
-        ]);
+            'abilities' => 'required|array',
+            'levels' => 'required|array',
+            'types' => 'required|array'
 
+        ]);
         $offer = new Offer();
         $offer->title = $request->input('title');
         $offer->content = Purifier::clean($request->input('content'));
@@ -195,15 +204,19 @@ class OffersController extends Controller
     {
         $request->validate([
             'title' => ['required', 'max:255'],
+            'salary' => 'required|numeric',
             'content' => 'required',
             'industry' => 'required',
             'deadline' => 'required|date',
+            'abilities' => 'required|array',
+            'levels' => 'required|array',
+            'types' => 'required|array'
+
         ]);
 
-        $offer = Offer::where('slug', $slug);
+        $offer = Offer::where('slug', $slug)->first();
         $offer->title = $request->input('title');
         $offer->content = Purifier::clean($request->input('content'));
-        $offer->slug = SlugService::createSlug(Offer::class, 'slug', $request->title);
         $offer->salary = $request->input('salary');
         $offer->industry = $request->input('industry');
         $offer->deadline = $request->input('deadline');
@@ -222,7 +235,7 @@ class OffersController extends Controller
             $offer->types()->attach($type);
         }
 
-        return redirect('/artykuly')
+        return redirect('/oferty/'.$slug)
             ->with('message', 'Zaktualizowano ofertę');
     }
 

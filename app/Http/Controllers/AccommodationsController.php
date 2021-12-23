@@ -10,6 +10,10 @@ use Purifier;
 
 class AccommodationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -155,7 +159,7 @@ class AccommodationsController extends Controller
                 'content' => Purifier::clean($request->input('content')),
             ]);
         }
-            return redirect('/zakwaterowanie')
+            return redirect('/zakwaterowanie/'.$slug)
                 ->with('message', 'Zaktualizowano zakwaterowanie');
     }
 
@@ -167,6 +171,10 @@ class AccommodationsController extends Controller
      */
     public function destroy($slug)
     {
-        //
+        $accommodation = Accommodation::where('slug', $slug);
+        $accommodation->delete();
+
+        return redirect('/zakwaterowanie')
+                ->with('message', 'Usunięto zakwaterowanie');
     }
 }

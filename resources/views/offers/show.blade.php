@@ -15,7 +15,7 @@
             <div class="col-8 bg-white">
                 <div class="row text-center">
                     <div class="col border-bottom border-end py-4 px-5">Lokalizacja:</div>
-                    <div class="col border-bottom py-4 px-5">Wynagrodzenie:{{ $offer->salary }}</div>
+                    <div class="col border-bottom py-4 px-5">Wynagrodzenie:{{ $offer->salary }}zł</div>
                 </div>
                 <div class="row text-center">
                     <div class="col border-bottom border-end py-4 px-5">Typ pracy: @foreach ($offer->types as $type)
@@ -56,6 +56,14 @@
                 </div>
                 <div class="px-5 py-4 uppercase border-bottom fw-bold">Dodaj do ulubionych</div>
                 <div class="px-5 py-4 uppercase fw-bold">Udostępnij:</div>
+                @if (Auth::check())
+                <form class="d-inline-block float-end" action="/oferty/{{ $offer->slug }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger">Usuń</button>
+                </form>
+                <a class="btn btn-info float-end" href="/oferty/{{ $offer->slug }}/edit/">Edytuj</a>
+            @endif
             </div>
         <div class="col-4">
             <div class="bg-white p-5 ">

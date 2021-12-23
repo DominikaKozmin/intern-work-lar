@@ -44,6 +44,14 @@
                     </div>
                     <p>Dodano {{ $accommodation->created_at }}</p>
                 </div>
+                @if (Auth::check())
+                <form class="d-inline-block float-end" action="/zakwaterowanie/{{ $accommodation->slug }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger">Usuń</button>
+                </form>
+                <a class="btn btn-info float-end" href="/zakwaterowanie/{{ $accommodation->slug }}/edit/">Edytuj</a>
+            @endif
             </div>
         <div class="col-4">
             <div class="bg-white p-5 ">

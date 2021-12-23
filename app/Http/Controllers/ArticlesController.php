@@ -110,7 +110,7 @@ class ArticlesController extends Controller
             ->update([
                 'title' => $request->input('title'),
                 'content' => Purifier::clean($request->input('content')),
-                'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
+                //'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
                 'user_id' => auth()->user()->id
             ]);
         }
@@ -121,12 +121,12 @@ class ArticlesController extends Controller
             ->update([
                 'title' => $request->input('title'),
                 'content' => Purifier::clean($request->input('content')),
-                'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
+                //'slug' => SlugService::createSlug(Article::class, 'slug', $request->title),
                 'image' => $newImageName,
                 'user_id' => auth()->user()->id
             ]);
         }
-            return redirect('/artykuly')
+            return redirect('/artykuly/'.$slug)
                 ->with('message', 'Zaktualizowano artykuł');
     }
 

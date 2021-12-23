@@ -7,11 +7,7 @@
             <div>
                 <div class="pb-3"><a href="..">Start </a><span class="font-black">></span> Artykuły</div>
                 <div class="fs-1">Artykuły</div>
-                @if (session()->has('message'))
-                    <p class='alert alert-info mt-4'>
-                        {{ session()->get('message') }}
-                    </p>
-                @endif
+                @include('components.show_message')
             </div>
         </div>
         <div class="row">
