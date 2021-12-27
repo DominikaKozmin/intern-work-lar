@@ -46,7 +46,7 @@ class AddOffersTable extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('industry')->references('id')->on('industries');
+            //$table->foreign('industry')->references('id')->on('industries');
         });
     }
 

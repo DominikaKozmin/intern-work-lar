@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div>
-        <strong><h3 class = "main-title">Znajdź pracę</h3></strong>
+        <h3 class = "main-title font-weight-bold">Znajdź pracę</h3>
     </div> 
     <div class="pb-5">
         <div id="app2">

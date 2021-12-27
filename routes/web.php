@@ -10,16 +10,6 @@ use App\Http\Controllers\RegisterEmployerController;
 use App\Http\Controllers\RegisterEmployeeController;
 use Illuminate\Support\Facades\Auth;
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/pracownik', 'App\Http\Controllers\EmployeeController@index');
-Route::get('/pracodawca', 'App\Http\Controllers\EmployerController@index');
-Route::get('/zakwaterowanie', 'App\Http\Controllers\AccommodationController@index');
-*/
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/pracownik', [PagesController::class, 'employee']);
 Route::get('/pracodawca', [PagesController::class, 'employer']);
@@ -41,4 +31,4 @@ Route::POST('/register-employer', [RegisterEmployerController::class, 'store']);
 Route::get('/register-employee', [RegisterEmployeeController::class, 'create']);
 Route::POST('/register-employee', [RegisterEmployeeController::class, 'store']);
 
-Route::get('/test', [PagesController::class, 'test']);
+Route::get('/test', [PagesController::class, 'test'])->middleware('role');

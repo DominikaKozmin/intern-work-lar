@@ -25,7 +25,7 @@ class RegisterEmployeeController extends Controller
         return User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'role_id' => '0',
+            'role' => 'employee',
             'password' => Hash::make($request['password']),
         ]);
     }

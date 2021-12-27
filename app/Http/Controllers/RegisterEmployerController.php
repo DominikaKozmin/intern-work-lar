@@ -27,7 +27,7 @@ class RegisterEmployerController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'company_name' => $request['company_name'],
-            'role_id' => '0',
+            'role' => 'employer',
             'password' => Hash::make($request['password']),
         ]);
     }

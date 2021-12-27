@@ -80,9 +80,9 @@ class OffersController extends Controller
         return view("offers.index")
             ->with('offers', Offer::orderBy('created_at', 'DESC')->get()->toarray())
             ->with('offersRightPanel', Offer::orderBy('created_at', 'DESC')->get())
-            ->with('employers', User::whereNotNull('company_name')->orderBy('created_at', 'DESC')->limit(5)->get())
-            ->with('employersCount', User::whereNotNull('company_name')->count())
-            ->with('countOffer', Offer::whereNotNull('id')->count())
+            ->with('employers', User::where('role', 'employer')->orderBy('created_at', 'DESC')->limit(5)->get())
+            ->with('employersCount', User::where('role', 'employer')->count())
+            ->with('countOffer', Offer::all()->count())
             ->with('leftBarData', $index);
     }
 
