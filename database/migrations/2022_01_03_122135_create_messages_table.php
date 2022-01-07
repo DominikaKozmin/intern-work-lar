@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccommodationsTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,22 @@ class CreateAccommodationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accommodations', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->foreignId('owner_id');
+            $table->foreignId('author_id')->nullable();
+            $table->string('category');
             $table->string('slug');
-            $table->decimal('price');
-            $table->foreignId('city_id');
-            $table->foreignId('user_id');
-            $table->unsignedTinyInteger('rooms');
-            $table->decimal('square_meters');
+            $table->string('name');
+            $table->string('email');
+            $table->string('item');
             $table->longText('content');
             $table->timestamps();
-            $table->foreign('city_id')
+            $table->foreign('owner_id')
                 ->references('id')
-                ->on('cities')
+                ->on('users')
                 ->onDelete('cascade');
-            $table->foreign('user_id')
+            $table->foreign('author_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
@@ -42,6 +42,6 @@ class CreateAccommodationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accommodations');
+        Schema::dropIfExists('messages');
     }
 }

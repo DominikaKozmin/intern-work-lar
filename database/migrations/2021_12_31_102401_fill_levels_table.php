@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class FillLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,24 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-        });
-        DB::table('countries')->insert([
+        DB::table('levels')->insert([
             [
-                'name' => 'Polska'
+                'name' => 'Pracownik fizyczny'
             ],
             [
-                'name' => 'Niemcy'
+                'name' => 'Specjalista'
             ],
             [
-                'name' => 'Wielka Brytania'
+                'name' => 'Kierownik'
             ],
             [
-                'name' => 'Turcja'
+                'name' => 'Asystent'
             ],
             [
-                'name' => 'Indie'
+                'name' => 'Praktykant/Stażysta'
+            ],
+            [
+                'name' => 'Dyrektor/Prezes'
             ]
         ]);
     }
@@ -43,6 +42,6 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        //
     }
 }

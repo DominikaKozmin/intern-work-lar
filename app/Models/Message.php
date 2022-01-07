@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Industry extends Model
+class Message extends Model
 {
     use HasFactory;
-
     protected $fillable = [
+        'owner_id',
+        'author_id',
+        'category',
+        'slug',
         'name',
+        'email',
+        'item',
+        'content'
     ];
-
-    public function offers(){
-        $this->belongsToMany(offers::class);
-    }
 }

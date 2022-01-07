@@ -21,6 +21,7 @@ class OffersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('role:Employer', ['except' => ['index', 'show']]);
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +35,11 @@ class OffersController extends Controller
         $searchedLocation = Request()->get('location');
 
         $index = [];
-        $industryCount = json_decode(json_encode(DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;')),true) ;
+
+        $industryCount = Industry::orderBy('id', 'ASC')->get()->toarray();
+        for($i=0; $i<count($industryCount);$i++){
+            $industryCount[$i]['count'] = offer::where('industry', $i+1)->count();
+        }
         $industryCount['tablename'] = "Branża";
         if($searchedIndustry){
             $industryCount[$searchedIndustry-1]['checked'] = true;
@@ -74,9 +79,6 @@ class OffersController extends Controller
 
         array_push($index, $industryCount, $ablilitesCount, $levelsCount, $salaryCount, $countriesCount, $typesCount);
 
-        $offersCountlist = DB::select('select industries.name, COUNT(*) as count from `offers` INNER JOIN industries ON offers.industry=industries.id GROUP BY industries.name ORDER BY COUNT(*) DESC;');
-
-
         return view("offers.index")
             ->with('offers', Offer::orderBy('created_at', 'DESC')->get()->toarray())
             ->with('offersRightPanel', Offer::orderBy('created_at', 'DESC')->get())
@@ -84,10 +86,6 @@ class OffersController extends Controller
             ->with('employersCount', User::where('role', 'employer')->count())
             ->with('countOffer', Offer::all()->count())
             ->with('leftBarData', $index);
-    }
-
-    public function zxc(){
-        return view('employee');
     }
 
     /**
@@ -187,6 +185,7 @@ class OffersController extends Controller
             $types[$checkedType['id']-1]['checked'] = true;
         }
         return view('offers.edit')
+            ->with('industries', Industry::All())
             ->with('offer', $offers)
             ->with('abilities', $abilities)
             ->with('levels', $levels)

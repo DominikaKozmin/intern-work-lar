@@ -46,7 +46,7 @@
 import OffersJobOffer from './OffersJobOffer.vue'
 import OffersJobOfferTitles from './OffersJobOfferTiles.vue'
 import Dropdown from 'vue-simple-search-dropdown';
-import PopupButton from './PopupButton.vue'
+import PopupButton from './../popup/PopupButton.vue'
 
 export default {
     props:['filters'],
@@ -118,7 +118,6 @@ export default {
                 break;
             }
             let order = "&order=" + this.order
-            console.log("http://localhost:8000/api/test" + industry + ability + level + salary + location + type + orderBy + order)
             fetch("http://localhost:8000/api/test" + industry + ability + level + salary + location + type + orderBy + order)
             .then(response => response.json())
             .then(data => (this.jsondata = data));

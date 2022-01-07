@@ -36,7 +36,7 @@
             
             @include('components.packet',[
                 'data' => '{{ $packet }}',
-                'buisness_size' => '{!! dd($packet->buinsess_size) !!}',
+                'buisness_size' => '{!! dd($packet->business_size) !!}',
                 'packet_name' => '{{ $packet->packet_name }}',
                 'price' => '{{ $test }}',
                 'highlighted_offers' => '{{  $packet->highlighted_offers  }}',

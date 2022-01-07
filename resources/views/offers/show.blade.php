@@ -68,17 +68,21 @@
         <div class="col-4">
             <div class="bg-white p-5 ">
                 <div class="text-center border-bottom pb-5 mb-5">
-                    <img class="d-inline-block pb-4" src="{{ asset('img/images/user.png') }}" alt=""><br>
+                    <img class="d-inline-block pb-4" src="{{ $offer->user->showAvatar() }}" alt=""><br>
                     <p class="fs-1">{{ $offer->user->name }}</p> 
                 </div>
-                <div>
-                    <div class="d-flex pb-4"><p class="uppercase fw-bold border-bottom">CONTACT FORM</p></div>
-                    <input class="form-control mb-2" type="text" placeholder="Twoje Imię">
-                    <input class="form-control mb-2" type="text" placeholder="Twój email">
-                    <input class="form-control mb-2" type="text" placeholder="Przedmiot">
-                    <textarea class="form-control" name="" id="" cols="30" rows="5" placeholder="Wiadomość"></textarea><br>
-                    <input class="btn btn-success" type="button" value="Wyślij teraz">
-                </div>
+                <form action="/submitmessage" method="POST">
+                    <div>
+                        @csrf
+                        <div class="d-flex pb-4"><p class="uppercase fw-bold border-bottom">CONTACT FORM</p></div>
+                        <input type="hidden" name="owner_id" value="{{ $offer->user_id }}">
+                        <input class="form-control mb-2" type="text" name="name" placeholder="Twoje Imię">
+                        <input class="form-control mb-2" type="text" name="email" placeholder="Twój email">
+                        <input class="form-control mb-2" type="text" name="item" placeholder="Przedmiot">
+                        <textarea class="form-control" name="content" id="" cols="30" rows="5" placeholder="Wiadomość"></textarea><br>
+                        <input class="btn btn-success" type="submit" value="Wyślij teraz">
+                    </div>
+                </form>
             </div>
         </div>
         </div>

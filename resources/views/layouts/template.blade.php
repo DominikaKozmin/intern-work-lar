@@ -61,7 +61,7 @@
     @yield('content')
 
     <footer>
-        <p>Copyright © 2020
+        <p>Copyright © 2022
             <a class="text-light" href="https://fundacjaglosmlodych.org/">Fundacja Głos Młodych</a>
         </p>
     </footer>

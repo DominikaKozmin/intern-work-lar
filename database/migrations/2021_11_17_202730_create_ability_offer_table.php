@@ -17,8 +17,14 @@ class CreateAbilityOfferTable extends Migration
             $table->id();
             $table->foreignId('ability_id');
             $table->foreignId('offer_id');
-            $table->foreign('ability_id')->references('id')->on('abilities');
-            $table->foreign('offer_id')->references('id')->on('offers');
+            $table->foreign('ability_id')
+                ->references('id')
+                ->on('abilities')
+                ->onDelete('cascade');
+            $table->foreign('offer_id')
+                ->references('id')
+                ->on('offers')
+                ->onDelete('cascade');
         });
     }
 

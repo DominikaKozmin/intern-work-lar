@@ -76,7 +76,6 @@ export default {
 
     },
     beforeCreate(){
-        console.log(window.location.origin + "/api/abilities")
         fetch(window.location.origin + "/api/abilities")
         .then(response => response.json())
         .then(data => (this.abilities = data));

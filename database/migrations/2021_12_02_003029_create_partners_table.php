@@ -35,7 +35,7 @@ class CreatePartnersTable extends Migration
             [
                 'name' => 'EuRabota',
                 'path_to_wheel_img' => 'eurabota.png',
-                'url' => ''
+                'url' => 'http://www.eurabota.com'
             ],
             [
                 'name' => 'gruzGo!',
@@ -64,7 +64,7 @@ class CreatePartnersTable extends Migration
             ],
             [
                 'name' => 'Jobs.ge',
-                'path_to_wheel_img' => 'jobs-ge.png',
+                'path_to_wheel_img' => 'jobs_ge.png',
                 'url' => 'http://www.jobs.ge'
             ]
             ]);

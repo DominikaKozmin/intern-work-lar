@@ -20,9 +20,6 @@
 <script>
 export default {
     props: ['data'],
-    updated(){
-        console.log(this.data)
-    }
 }
 </script>
 

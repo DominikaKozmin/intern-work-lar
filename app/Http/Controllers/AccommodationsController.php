@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Accommodation;
 use App\Models\Photo;
@@ -40,7 +41,8 @@ class AccommodationsController extends Controller
         }
         
         return view('accommodation.index')
-            ->with('accommodations', $accommodations);
+            ->with('accommodations', $accommodations)
+            ->with('userid', Auth::id());
     }
 
     /**

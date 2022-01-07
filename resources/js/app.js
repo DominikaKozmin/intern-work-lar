@@ -19,17 +19,18 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('vue-test', require('./components/VueBladeHandlingTest.vue').default);
-Vue.component('offers-left', require('./components/OffersLeftBar.vue').default);
-Vue.component('offers-middle-panel', require('./components/OffersMiddlePanel.vue').default);
-Vue.component('category-middle-panel', require('./components/CategoryMiddlePanel.vue').default);
-Vue.component('popup-button', require('./components/PopupButton.vue').default);
-Vue.component('partners', require('./components/Partners.vue').default);
-Vue.component('offers-left-middle-merged', require('./components/OffersLeftMiddleMerged.vue').default);
-Vue.component('main-page-search', require('./components/MainPageSearch.vue').default);
-Vue.component('accommodation-search', require('./components/AccommodationSearch.vue').default);
+Vue.component('vue-test', require('./components/mainPage/VueBladeHandlingTest.vue').default);
+Vue.component('offers-left', require('./components/offers/OffersLeftBar.vue').default);
+Vue.component('offers-middle-panel', require('./components/offers/OffersMiddlePanel.vue').default);
+Vue.component('category-middle-panel', require('./components/offers/CategoryMiddlePanel.vue').default);
+Vue.component('popup-button', require('./components/popup/PopupButton.vue').default);
+Vue.component('partners', require('./components/mainPage/Partners.vue').default);
+Vue.component('offers-left-middle-merged', require('./components/offers/OffersLeftMiddleMerged.vue').default);
+Vue.component('main-page-search', require('./components/mainPage/MainPageSearch.vue').default);
+Vue.component('accommodation-search', require('./components/accommodation/AccommodationSearch.vue').default);
 Vue.component('accommodation-create', require('./components/accommodation/AccommodationCreate').default);
 Vue.component('accommodation-edit', require('./components/accommodation/AccommodationEdit').default);
+Vue.component('accommodation-index', require('./components/accommodation/AccommodationIndex.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

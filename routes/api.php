@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AccommodationApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OffersController;
@@ -35,5 +36,8 @@ Route::get('types', [MiscellaneousApiController::class, 'types']);
 Route::get('locations', [MiscellaneousApiController::class, 'locations']);
 Route::get('industries', [MiscellaneousApiController::class, 'industries']);
 Route::get('cities', [MiscellaneousApiController::class, 'cities']);
+
+Route::get('accommodations', [AccommodationApiController::class, 'showAccommodations']);
+Route::get('higlightedaccommodations', [AccommodationApiController::class, 'showHighlightedAccommodations']);
 
 Route::get('test', [MiscellaneousApiController::class, 'test']);

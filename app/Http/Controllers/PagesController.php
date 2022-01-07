@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\Models\Packet;
@@ -37,6 +38,6 @@ class PagesController extends Controller
             ->get());
     }
     public function test(){
-        return "działam";
+        return dd(Auth::id());
     }
 }

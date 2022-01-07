@@ -17,6 +17,16 @@ class UpdateCitiesTable extends Migration
             $table->dropForeign('cities_city_id_foreign');
             $table->dropColumn('city_id');
         });
+        DB::table('cities')->insert([
+            [
+                'name' => "Poznań",
+                'province_id' => 15
+            ],
+            [
+                'name' => "Warszawa",
+                'province_id' => 7
+            ],
+        ]);
     }
 
     /**

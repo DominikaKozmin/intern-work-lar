@@ -44,7 +44,7 @@
 import OffersJobOffer from './OffersJobOffer.vue'
 import OffersJobOfferTitles from './OffersJobOfferTiles.vue'
 import Dropdown from 'vue-simple-search-dropdown';
-import PopupButton from './PopupButton.vue'
+import PopupButton from './../popup/PopupButton.vue'
 
 export default {
     props: ['offers', 'id'],

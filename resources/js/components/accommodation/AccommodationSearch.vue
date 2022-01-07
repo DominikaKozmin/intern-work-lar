@@ -27,7 +27,7 @@ export default {
     data(){
         return{
             keywords: '',
-            locations: null,
+            locations: [],
             chosenLocation: null,
         }
     },
@@ -36,14 +36,13 @@ export default {
             this.chosenLocation = selection;
         },
         search(){
-            let url = window.location.origin + "/zakwaterowanie?"
+            let url = "?"
             url += 'search=' + this.keywords;
             url += this.chosenLocation['id'] == undefined ? '' : '&location=' + this.chosenLocation['id'];
-            window.location.href = url
+            this.$emit('api', url);
         }
     },
     beforeCreate(){
-        console.log(window.location.origin + "/api/cities")
         fetch(window.location.origin + "/api/cities")
         .then(response => response.json())
         .then(data => (this.locations = data));

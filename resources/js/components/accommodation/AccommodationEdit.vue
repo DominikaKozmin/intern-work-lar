@@ -5,11 +5,11 @@
                 <form :action="'/zakwaterowanie/'+this.jsondata['slug']" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" :value="csrf">
-                    Tytuł<br>
-                    <input class="w-full" type="text" name="title" placeholder="Tytuł..." v-model="this.jsondata['title']"><br><br>
-                    Cena<br>
-                    <input class="w-full" type="text" name="price" placeholder="Cena..." v-model="this.jsondata['price']"><br><br>
-                    Miasto<br>
+                    <label for="title">Tytuł</label>
+                    <input class="w-full" type="text" name="title" id="title" placeholder="Tytuł..." v-model="this.jsondata['title']">
+                    <label for="price">Cena</label>
+                    <input class="w-full" type="text" name="price" id="price" placeholder="Cena..." v-model="this.jsondata['price']">
+                    <label for="">Miasto</label>
                     <input type="hidden" name='city_id' :value="chosenLocation['id']">
                     <Dropdown
                         :options="locations"
@@ -17,10 +17,11 @@
                         v-on:selected="setLocation"
                         placeholder="Lokacja...">
                     </Dropdown>
-                    Liczba pokoi<br>
-                    <input class="w-full" type="text" name="rooms" placeholder="Liczba pokoi..." :value="this.jsondata['rooms']"><br><br>
-                    Metry kwadratowe<br>
-                    <input class="w-full" type="text" name="square_meters" placeholder="Metry kwadratowe..." :value="this.jsondata['square_meters']"><br><br>
+                    <label for="rooms">Liczba pokoi</label>
+                    <input class="w-full" type="text" name="rooms" id="rooms" placeholder="Liczba pokoi..." :value="this.jsondata['rooms']">
+                    <label for="square_meters">Metry kwadratowe</label>
+                    <input class="w-full" type="text" name="square_meters" id="square_meters" placeholder="Metry kwadratowe..." :value="this.jsondata['square_meters']">
+                    <label for="photo_group"></label>
                     Zdjęcie
                     <div class="input-group">
                         <input type="file"  name="image" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
@@ -35,7 +36,7 @@
                     }"
                     name="content"
                     v-model="this.jsondata['content']"
-                    /><br>
+                    />
                     <div class="input-group">
                         <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Wyślij</button>
                     </div>
@@ -67,7 +68,6 @@ export default {
         this.chosenLocation = JSON.parse('{ "id": '+ this.jsondata['city_id'] +'}')
     },
     beforeCreate(){
-        console.log(window.location.origin + "/api/cities")
         fetch(window.location.origin + "/api/cities")
         .then(response => response.json())
         .then(data => (this.locations = data));

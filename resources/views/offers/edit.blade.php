@@ -29,17 +29,25 @@
         <form action="/oferty/{{ $offer->slug }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            Tytuł<br>
-            <input class="w-full" type="text" name="title" placeholder="Tytuł..." value="{{ $offer->title }}"><br><br>
-            Wynagrodzenie<br>
-            <input class="w-full" type="text" name="salary" placeholder="Wynagrodzenie..." value="{{ $offer->salary }}"><br><br>
-            Branża<br>
-            <input class="w-full" type="text" name="industry" placeholder="Branża..." value="{{ $offer->industry }}"><br><br>
-            Czas trwania oferty<br>
-            <input class="w-full" type="date" name="deadline" value="{{ $offer->deadline }}"><br><br>
+            <label for="title">Tytuł</label>
+            <input class="w-full" type="text" name="title" id="title" placeholder="Tytuł..." value="{{ $offer->title }}">
+            <label for="salary">Wynagrodzenie</label>
+            <input class="w-full" type="text" name="salary" id="salary" placeholder="Wynagrodzenie..." value="{{ $offer->salary }}">
+            <label for="industry">Branża</label>
+            <select class="d-block" name="industry" id="industry" selected=>
+                @foreach ($industries as $industry)
+                    @if($industry->id!=$offer->industry)
+                        <option value="{{ $industry->id }}">{{ $industry->name }}</option> 
+                    @else 
+                        <option value="{{ $industry->id }}" selected="selected">{{ $industry->name }}</option> 
+                    @endif
+                @endforeach
+            </select>
+            <label for="deadline">Czas trwania oferty</label>
+            <input class="w-full" type="date" name="deadline" id="deadline" value="{{ $offer->deadline }}">
             <div class="border">
-                Umiejętności<br>
-                <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
+                <label for="abilities">Umiejętności</label>
+                <div class="overflow-scroll" id="abilities" style="height: 250px; overflow-x: hidden !important;">
                     @foreach ($abilities as $ability)
                         <label class="form-label" for="">{{ $ability['name'] }}</label>
                         <input class="form-check-input" type="checkbox" name="abilities[]" value="{{ $ability['id'] }}"
@@ -48,7 +56,7 @@
                 </div>
             </div>
             <div class="border">
-                Poziomy<br>
+                <label for="levels">Poziomy</label>
                 <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
                     @foreach ($levels as $level)
                         <label class="form-label" for="">{{ $level['name'] }}</label>
@@ -58,8 +66,8 @@
                 </div>
             </div>
             <div class="border">
-                Typy<br>
-                <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
+                <label for="types">Typy</label>
+                <div class="overflow-scroll" id="types" style="height: 250px; overflow-x: hidden !important;">
                 @foreach ($types as $type)
                     <label class="form-label" for="">{{ $type['name'] }}</label>
                     <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type['id'] }}"
@@ -67,8 +75,8 @@
                 @endforeach
                 </div>
             </div>
-            Opis<br>
-            <textarea id="content" name="content">{{ $offer->content }}</textarea><br>
+            <label for="content">Opis</label>
+            <textarea id="content" name="content">{{ $offer->content }}</textarea>
             <div class="input-group">
                 <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Wyślij</button>
             </div>

@@ -15,18 +15,10 @@ class Role
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role)
     {
         $user = Auth::user();
-        dd($user->hasRole('employer'));
-        if (!Auth::check()) // I included this check because you have it, but it really should be part of your 'auth' middleware, most likely added as part of a route group.
-        return redirect('login');
-
-        
-
-        
-        if($user->isAdmin()) return $next($request);
-
-        return redirect('login');
+        if($user->hasRoleOrIsAdmin($role)) return $next($request);
+        else return redirect('login');
     }
 }

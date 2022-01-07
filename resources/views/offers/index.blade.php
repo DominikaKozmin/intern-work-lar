@@ -1,7 +1,11 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="container"> 
+    @if (!Auth::guest() && Auth::user()->role=="Admin")
+        <a class="btn btn-info float-end" href="/oferty/create">Dodaj nową ofertę pracy</a>
+    @endif
+    <div class="container">
+
         <h1 class="standard pl-4">Oferty pracy</h1>
         <div class="container">
             <div class="row">

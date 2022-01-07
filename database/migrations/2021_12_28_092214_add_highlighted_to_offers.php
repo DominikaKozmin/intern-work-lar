@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRefrenceToOffers extends Migration
+class AddHighlightedToOffers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddRefrenceToOffers extends Migration
     public function up()
     {
         Schema::table('offers', function (Blueprint $table) {
-            $table->foreign('industry')
-                ->references('id')
-                ->on('industries')
-                ->onDelete('cascade');
+            $table->boolean('highlighted')->nullable()->after('content');
         });
     }
 

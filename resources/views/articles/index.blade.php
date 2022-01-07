@@ -2,6 +2,9 @@
 
 @section('content')
     <!-- {{ Date::setLocale('pl') }} -->
+    @if (!Auth::guest() && Auth::user()->role=="Admin")
+		<a class="btn btn-info float-end" href="/artykuly/create">Dodaj nowy artykuł</a>
+	@endif
     <div class="container">
         <div class="mt-5 mb-5">
             <div>
@@ -47,9 +50,5 @@
                 @include('components.latest_articles_vertical')
             </div>
         </div>
-        @if (Auth::check())
-            <a href="/artykuly/create">Utwórz nowy artykuł</a>
-        @endif
     </div>
-
 @endsection

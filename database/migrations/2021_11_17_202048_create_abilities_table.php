@@ -17,6 +17,65 @@ class CreateAbilitiesTable extends Migration
             $table->id();
             $table->string('name');
         });
+        DB::table('abilities')->insert([
+            [
+                'name' => 'PHP'
+            ],
+            [
+                'name' => 'Photoshop'
+            ],
+            [
+                'name' => 'Web Developer'
+            ],
+            [
+                'name' => 'OOP PHP'
+            ],
+            [
+                'name' => 'oop'
+            ],
+            [
+                'name' => 'Social Media'
+            ],
+            [
+                'name' => 'objective-c'
+            ],
+            [
+                'name' => 'NodeJS'
+            ],
+            [
+                'name' => 'Word'
+            ],
+            [
+                'name' => 'Wordpress'
+            ],
+            [
+                'name' => 'Negocjacje'
+            ],
+            [
+                'name' => 'Uprawnienie na wózek widłowy'
+            ],
+            [
+                'name' => 'public relations'
+            ],
+            [
+                'name' => 'Software Development'
+            ],
+            [
+                'name' => 'rozmowy rekrutacyjne'
+            ],
+            [
+                'name' => 'SQL'
+            ],
+            [
+                'name' => 'swobodnie nawiązuje kontakty biznesowe'
+            ],
+            [
+                'name' => 'Mysql'
+            ],
+            [
+                'name' => 'Python'
+            ],
+        ]);
     }
 
     /**

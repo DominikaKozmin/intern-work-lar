@@ -50,7 +50,6 @@ export default {
         },
     },
     beforeCreate(){
-        console.log(window.location.origin + "/api/cities")
         fetch(window.location.origin + "/api/cities")
         .then(response => response.json())
         .then(data => (this.locations = data));

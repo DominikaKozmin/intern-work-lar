@@ -18,10 +18,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'role_id',
+        'role',
         'email',
         'password',
-        'company_name'
+        'company_name',
+        'avatar'
     ];
 
     /**
@@ -39,13 +40,33 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function isAdmin(){
-        return false;
+    public function offers(){
+        return $this->hasMany(Offer::class);
     }
-    public function hasRole($role){
-        dd($this);
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
+    public function accommodations(){
+        return $this->hasMany(Accommodation::class);
+    }
+    public function showAvatar()
+    {
+        return $this->avatar == null ? asset('img/images/user.png') : asset('storage/avatars/' . $this->avatar);
+    }
+    public function isAdmin()
+    {
+        return $this->role == 'Admin';
+    }
+    public function hasRole($role)
+    {
+        return $this->role == $role;
+    }
+    public function hasRoleOrIsAdmin($role)
+    {
+        return $this->isAdmin() || $this->hasRole($role);
     }
 }

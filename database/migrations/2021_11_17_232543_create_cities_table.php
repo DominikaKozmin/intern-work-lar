@@ -18,8 +18,14 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->foreignId('city_id');
             $table->foreignId('province_id')->nullable();
-            $table->foreign('city_id')->references('id')->on('cities');
-            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->foreign('city_id')
+                ->references('id')
+                ->on('cities')
+                ->onDelete('cascade');
+            $table->foreign('province_id')
+                ->references('id')
+                ->on('provinces')
+                ->onDelete('cascade');
         });
     }
 

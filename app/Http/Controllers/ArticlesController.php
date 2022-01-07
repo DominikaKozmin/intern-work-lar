@@ -12,6 +12,7 @@ class ArticlesController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('role:Editor', ['except' => ['index', 'show']]);
     }
     /**
      * Display a listing of the resource.
@@ -47,7 +48,7 @@ class ArticlesController extends Controller
             'content' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg|max:5048',
         ]);
-        $newImageName = uniqid().'-'.$request->title.'.'.$request->image->extension();
+        $newImageName = uniqid().'.'.$request->image->extension();
 
         $request->image->move(public_path('storage\articles_images'),$newImageName);
         

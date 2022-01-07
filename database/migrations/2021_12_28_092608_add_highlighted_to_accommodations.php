@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNameColumnToColorSchemesTable extends Migration
+class AddHighlightedToAccommodations extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddNameColumnToColorSchemesTable extends Migration
      */
     public function up()
     {
-        Schema::table('color_schemes', function (Blueprint $table) {
-            $table->string('name')->after('id');
+        Schema::table('accommodations', function (Blueprint $table) {
+            $table->boolean('highlighted')->nullable()->after('content');
         });
     }
 
@@ -25,7 +25,7 @@ class AddNameColumnToColorSchemesTable extends Migration
      */
     public function down()
     {
-        Schema::table('color_schemes', function (Blueprint $table) {
+        Schema::table('accommodations', function (Blueprint $table) {
             //
         });
     }

@@ -10,15 +10,15 @@
                 </div>
             </div>
         </div>
-        <div v-show="!showHighlightedOffers"> 
+        <div v-show="!showHighlightedOffers">
             <div class="row">
                 <div class="col">
-                    <div v-for="item in 12" :key="item">
+                    <div v-for="item in latestOffers.length || maxLength" :key="item">
                         <div v-if="item%2==1"><JobOfferTemplate :data="latestOffers[item-1]"></JobOfferTemplate></div>
                     </div>
                 </div>
                 <div class="col">
-                    <div v-for="item in 12" :key="item">
+                    <div v-for="item in latestOffers.length || maxLength" :key="item">
                         <div v-if="item%2==0"><JobOfferTemplate :data="latestOffers[item-1]"></JobOfferTemplate></div>
                     </div>
                 </div>
@@ -27,12 +27,12 @@
         <div v-show="showHighlightedOffers"> 
             <div class="row">
                 <div class="col">
-                    <div v-for="item in 12" :key="item">
+                    <div v-for="item in highlightedOffers.length || maxLength" :key="item">
                         <div v-if="item%2==1"><JobOfferTemplate :data="highlightedOffers[item-1]"></JobOfferTemplate></div>
                     </div>
                 </div>
                 <div class="col">
-                    <div v-for="item in 12" :key="item">
+                    <div v-for="item in highlightedOffers.length || maxLength" :key="item">
                         <div v-if="item%2==0"><JobOfferTemplate :data="highlightedOffers[item-1]"></JobOfferTemplate></div>
                     </div>
                 </div>
@@ -45,14 +45,14 @@
 </template>
 
 <script>
-import JobOfferTemplate from './JobOfferTemplate.vue'
+import JobOfferTemplate from '../mainPage/JobOfferTemplate.vue'
 
 export default {
     props: ['latest-offers', 'highlighted-offers'],
     data(){
         return {
-            counter: 1,
-            showHighlightedOffers: false
+            maxLength: 12,
+            showHighlightedOffers: false,
         }
     },
     components: {

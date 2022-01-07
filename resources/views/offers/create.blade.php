@@ -20,9 +20,9 @@
                     @endforeach
                 </select>
                 <label for="deadline">Czas trwania oferty</label>
-                <input class="w-full" type="date" name="deadline" id="deadline" placeholder="Tytuł..."><br><br>
+                <input class="w-full" type="date" name="deadline" id="deadline" placeholder="Tytuł...">
                 <div class="border">
-                    Umiejętności<br>
+                    <label for="abilities">Umiejętności</label>
                     <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
                         @foreach ($abilities as $ability)
                             <label class="form-label" for="">{{ $ability->name }}</label>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="border">
-                    Poziomy<br>
-                    <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
+                    <label for="levels">Poziomy</label>
+                    <div class="overflow-scroll" id="levels" style="height: 250px; overflow-x: hidden !important;">
                         @foreach ($levels as $level)
                             <label class="form-label" for="">{{ $level->name }}</label>
                             <input class="form-check-input" type="checkbox" name="levels[]" value="{{ $level->id }}" id=""><br>
@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <div class="border">
-                    Typy<br>
-                    <div class="overflow-scroll"  style="height: 250px; overflow-x: hidden !important;">
+                    <label for="types">Typy</label>
+                    <div class="overflow-scroll" id="types" style="height: 250px; overflow-x: hidden !important;">
                     @foreach ($types as $type)
                         <label class="form-label" for="">{{ $type->name }}</label>
                         <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type->id }}" id=""><br>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <label for="content">Opis</label>
-                <textarea id="content" name="content"></textarea><br>
+                <textarea id="content" name="content"></textarea>
                 <div class="input-group">
                     <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Wyślij</button>
                 </div>
